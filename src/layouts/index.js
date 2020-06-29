@@ -1,19 +1,16 @@
 /** @jsx jsx */
-import { jsx, Box } from "theme-ui"
+import { jsx, Container, Box } from "theme-ui"
 
 import PropTypes from "prop-types"
-import Header from "./header"
+import Header from "../components/header"
 
 const Layout = ({ children }) => {
   return (
-    <Box
-      sx={{
-        maxWidth: "1024px",
-        mx: "auto",
-      }}
-    >
+    <Box>
       <Header />
-      <main>{children}</main>
+      <Container px="3" pb="4">
+        <main>{children}</main>
+      </Container>
     </Box>
   )
 }

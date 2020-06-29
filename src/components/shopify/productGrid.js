@@ -1,30 +1,28 @@
 /** @jsx jsx */
-import { jsx, Grid, Heading, Box } from "theme-ui"
+import { jsx, Grid, Heading, Text } from "theme-ui"
 
 import Img from "gatsby-image"
 import SelectAdd from "./selectAdd"
-import { Link } from "gatsby"
 
 export default function ProductGrid({ products }) {
   return (
-    <Grid columns={[null, "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap="5">
-      {products.map(item => (
-        <div key={item.id}>
-          <Img
-            fluid={item.images[0].localFile.childImageSharp.fluid}
-            alt={item.title}
-          />
-          <Heading sx={{ fontSize: 4, my: 2 }}>{item.title}</Heading>
-          <SelectAdd variants={item.variants} />
-          <Box
-            as={Link}
-            to="#"
-            sx={{ textAlign: "right", fontSize: 1, display: "block" }}
-          >
-            Mehr Infos →
-          </Box>
-        </div>
-      ))}
+    <Grid columns={[null, "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap="4">
+      {products.map(item => {
+        const desc =
+          item.description.substr(0, item.description.lastIndexOf(" ", 100)) +
+          "..."
+        return (
+          <div key={item.id}>
+            <Img
+              fluid={item.images[0].localFile.childImageSharp.fluid}
+              alt={item.title}
+            />
+            <Heading sx={{ fontSize: 3, my: 3 }}>{item.title}</Heading>
+            <Text my="3">{desc}</Text>
+            <SelectAdd variants={item.variants} id={item.shopifyId} />
+          </div>
+        )
+      })}
     </Grid>
   )
 }

@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: "Shopify Store",
@@ -8,11 +12,12 @@ module.exports = {
   plugins: [
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-theme-ui",
+    "gatsby-plugin-layout",
     {
       resolve: "gatsby-theme-shopify-manager",
       options: {
-        shopName: "kruut-un-smook-hamburg",
-        accessToken: "7e1a24933ff6ffe1608a687ea07c90ca",
+        shopName: process.env.SHOPIFY_URL,
+        accessToken: process.env.SHOPIFY_API_TOKEN,
       },
     },
     {

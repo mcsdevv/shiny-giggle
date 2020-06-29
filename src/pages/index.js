@@ -1,22 +1,22 @@
 import React from "react"
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql } from "gatsby"
 import ProductGrid from "../components/shopify/productGrid"
 
 const IndexPage = ({ data }) => (
-  <Layout>
+  <>
     <SEO title="Home" />
     <ProductGrid products={data.allShopifyProduct.nodes} />
-  </Layout>
+  </>
 )
 
 export const query = graphql`
   query indexQuery {
-    allShopifyProduct {
+    allShopifyProduct(sort: { fields: updatedAt, order: DESC }) {
       nodes {
         id
         handle
+        description
         title
         shopifyId
         images {

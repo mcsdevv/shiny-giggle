@@ -2,35 +2,30 @@
 import { jsx, Button, Spinner, Box } from "theme-ui"
 
 import { useAddItemToCart } from "gatsby-theme-shopify-manager"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
-export default function ButtonAdd({ item, qty, text }) {
+export default function ButtonAdd({ id, qty, available, text, loading }) {
   const [buttonState, setButtonState] = useState("primary")
-  const variantId = item.shopifyId
+  const variantId = id
   const quantity = parseInt(qty)
   const hook = useAddItemToCart()
-  function add() {
+  function handleClick() {
     setButtonState("disabled")
     hook(variantId, quantity).then(() => {
       setButtonState("success")
       setTimeout(() => setButtonState("primary"), 1000)
     })
   }
-  return (
-    <Button
-      onClick={add}
-      disabled={
-        buttonState === "disabled" ||
-        buttonState === "success" ||
-        item.avaiableForSale === false
-      }
-      variant={buttonState}
-    >
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        {buttonState === "disabled" && (
-          <Spinner variant="styles.loadingSpinner" size="1.5rem" />
-        )}
-        {buttonState === "success" && (
+
+  function InnerButton() {
+    if (!available) {
+      return "Ausverkauft"
+    }
+    switch (buttonState) {
+      case "disabled":
+        return <Spinner variant="styles.loadingSpinner" size="24px" />
+      case "success":
+        return (
           <svg
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -39,13 +34,29 @@ export default function ButtonAdd({ item, qty, text }) {
               stroke: "currentColor",
               strokeWidth: "3px",
               fill: "none",
-              width: "1.5rem",
+              width: "24px",
             }}
           >
             <path d="M5 13l4 4L19 7"></path>
           </svg>
-        )}
-        {buttonState === "primary" && text}
+        )
+      default:
+        return text
+    }
+  }
+  return (
+    <Button
+      onClick={handleClick}
+      variant={!available ? "disabled" : buttonState}
+      disabled={
+        buttonState === "disabled" ||
+        buttonState === "success" ||
+        !available ||
+        loading
+      }
+    >
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <InnerButton />
       </Box>
     </Button>
   )

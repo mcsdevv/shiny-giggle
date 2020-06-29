@@ -1,7 +1,5 @@
 /** @jsx jsx */
-import { jsx, Heading, Button, Box, Text } from "theme-ui"
-
-import Layout from "../components/layout"
+import { jsx, Heading, Button, Box, Text, Grid } from "theme-ui"
 import ProductList from "../components/shopify/productList"
 import SEO from "../components/seo"
 
@@ -22,26 +20,32 @@ export default function Warenkorb() {
     hookRemoveItems(toRemove)
   }
   return (
-    <Layout>
+    <Box>
       <SEO title="Warenkorb" />
-      <Heading>Warenkorb</Heading>
-      <Text>
-        {cartCount > 0
-          ? `Artikel im Warenkorb: ${cartCount}`
-          : "Kein aktiver Warenkorb."}
-      </Text>
-      <ProductList products={cartItems} />
-      {cartCount > 0 && (
-        <Box mt="4">
-          <Button as="a" target="__blank" href={goCheckout} variant="success">
-            Zur Kasse
-          </Button>
-          <br />
-          <Button mt="2" onClick={removeAllItems} variant="error">
-            Löschen
-          </Button>
+      <Grid columns={[null, "repeat(2, 1fr)"]}>
+        <Box>
+          <Heading as="h2" mb="2" sx={{ fontSize: 4 }}>
+            Warenkorb
+          </Heading>
+          <Text>
+            {cartCount > 0
+              ? `Artikel im Warenkorb: ${cartCount}`
+              : "Der Warenkorb ist leer."}
+          </Text>
+          <ProductList products={cartItems} />
         </Box>
-      )}
-    </Layout>
+        {cartCount > 0 && (
+          <Box>
+            <Button as="a" target="__blank" href={goCheckout} variant="success">
+              Zur Kasse
+            </Button>
+            <br />
+            <Button mt="2" onClick={removeAllItems} variant="error">
+              Löschen
+            </Button>
+          </Box>
+        )}
+      </Grid>
+    </Box>
   )
 }

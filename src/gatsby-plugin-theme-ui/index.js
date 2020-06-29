@@ -117,18 +117,36 @@ export default {
       900: "#702459",
     },
   },
+  sizes: {
+    container: "1024px",
+  },
   styles: {
     ...base.styles,
+    root: {
+      ...base.styles.root,
+      lineHeight: "1.5",
+    },
     loadingSpinner: {
-      color: "gray.600",
+      color: "gray.500",
     },
   },
   buttons: {
     primary: {
+      bg: "blue.200",
+      color: "blue.900",
+      fontWeight: 500,
+      transition: "color, background-color 200ms ease",
+      "&:hover": {
+        bg: "blue.300",
+      },
+      "&:active": {
+        bg: "blue.400",
+      },
+    },
+    muted: {
+      variant: "buttons.primary",
       bg: "gray.100",
       color: "black",
-      fontWeight: 500,
-      transition: "color, background, border-color 100ms ease",
       "&:hover": {
         bg: "gray.200",
       },
@@ -142,34 +160,40 @@ export default {
       color: "gray.900",
       fontWeight: "600",
       "&:hover": {
-        bg: "gray.100",
+        bg: "gray.200",
       },
       "&:active": {
-        bg: "gray.200",
+        bg: "gray.300",
       },
     },
     success: {
       variant: "buttons.primary",
       color: "green.900",
       bg: "green.200",
-      "&:hover, &:focus": {
+      "&:hover": {
         bg: "green.300",
+      },
+      "&:active": {
+        bg: "green.400",
       },
     },
     error: {
       variant: "buttons.primary",
       color: "red.900",
       bg: "red.200",
-      "&:hover, &:focus": {
+      "&:hover": {
         bg: "red.300",
+      },
+      "&:active": {
+        bg: "red.400",
       },
     },
     disabled: {
       variant: "buttons.primary",
-      color: "gray.600",
-      bg: "gray.300",
+      color: "gray.500",
+      bg: "gray.200",
       "&:hover, &:focus": {
-        bg: "gray.400",
+        bg: "gray.200",
       },
     },
   },
@@ -177,6 +201,16 @@ export default {
     primary: {
       bg: "gray.600",
       color: "white",
+    },
+    success: {
+      variant: "badges.primary",
+      bg: "green.600",
+    },
+  },
+  forms: {
+    label: {
+      fontWeight: "600",
+      fontSize: "1",
     },
   },
 }
