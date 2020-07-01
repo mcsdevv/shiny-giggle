@@ -6,12 +6,12 @@ import { useState } from "react"
 
 import Button from "../button"
 
-export default function ProductButton({ id, qty, available, text, loading }) {
+export default function ProductButton({ id, qty, available, loading, text }) {
   const [buttonState, setButtonState] = useState("primary")
   const variantId = id
   const quantity = parseInt(qty)
-  const hook = useAddItemToCart()
 
+  const hook = useAddItemToCart()
   function handleClick() {
     setButtonState("disabled")
     hook(variantId, quantity).then(() => {
@@ -46,17 +46,20 @@ export default function ProductButton({ id, qty, available, text, loading }) {
     }
   }
 
+  const isDisabled =
+    buttonState === "disabled" ||
+    buttonState === "success" ||
+    !available ||
+    loading
+  const variant = !available ? "disabled" : buttonState
+  const isLoading = loading || buttonState === "disabled"
+
   return (
     <Button
       onClick={handleClick}
-      variant={!available ? "disabled" : buttonState}
-      disabled={
-        buttonState === "disabled" ||
-        buttonState === "success" ||
-        !available ||
-        loading
-      }
-      loading={loading || buttonState === "disabled"}>
+      variant={variant}
+      disabled={isDisabled}
+      loading={isLoading}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <InnerButton />
       </Box>

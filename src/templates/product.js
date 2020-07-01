@@ -16,7 +16,7 @@ export default function ({ data }) {
   } = data.shopifyProduct
   return (
     <Layout>
-      <Grid columns={[null, "1fr 2fr"]}>
+      <Grid columns={[null, "1fr 1fr"]}>
         <Box>
           <Img fluid={images[0].localFile.childImageSharp.fluid} />
         </Box>
@@ -31,7 +31,7 @@ export default function ({ data }) {
                 mb: 2,
               },
             }}></div>
-          <Box sx={{ maxWidth: 300 }}>
+          <Box mt="4" sx={{ maxWidth: 300 }}>
             <SelectAdd id={shopifyId} variants={variants} />
           </Box>
         </Box>
@@ -43,18 +43,18 @@ export default function ({ data }) {
 export const query = graphql`
   query Product($id: String) {
     shopifyProduct(id: { eq: $id }) {
-      descriptionHtml
-      handle
-      title
       id
       shopifyId
+      handle
+      title
+      descriptionHtml
       variants {
+        id
         shopifyId
         title
         priceV2 {
           amount
         }
-        availableForSale
       }
       images {
         localFile {

@@ -1,17 +1,18 @@
 /** @jsx jsx */
 import { useState, useEffect } from "react"
-import { jsx, Select, Box, Flex } from "theme-ui"
+import { jsx, Select, Box, Flex, Label } from "theme-ui"
 
 import { useClientUnsafe } from "gatsby-theme-shopify-manager"
+import { dotToComma } from "../../utils/dotToComma"
 import ProductButton from "./productButton"
 
-export default function SelectAdd({ variants, id }) {
+export default function SelectAdd({ id, variants }) {
   const shopify = useClientUnsafe()
-  const initialData = []
+  const initialState = []
   // Initialize state
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState(true)
   const [selected, setSelected] = useState(variants.length - 1)
-  const [data, setData] = useState(initialData)
+  const [data, setData] = useState(initialState)
   // Using the client hook to fetch availability on runtime
   useEffect(() => {
     shopify.product
@@ -44,15 +45,15 @@ export default function SelectAdd({ variants, id }) {
   )
   const PriceBox = () => (
     <Box>
-      <span sx={{ fontSize: 4, fontWeight: 500 }}>
-        {variants[selected].priceV2.amount}
-      </span>
+      <span sx={{ fontSize: 4, fontWeight: 500 }}>{price}</span>
       <span sx={{ fontSize: 2, ml: 1 }}>€</span>
     </Box>
   )
+  const price = dotToComma(variants[selected].priceV2.amount)
   return (
     <Box>
       <Box mb="2">
+        <Label htmlFor="selectVariant">Variante auswählen:</Label>
         <SelectField />
       </Box>
       <Flex sx={{ justifyContent: "space-between", alignItems: "center" }}>
@@ -61,8 +62,8 @@ export default function SelectAdd({ variants, id }) {
           id={variants[selected].shopifyId}
           qty={1}
           text="In den Warenkorb"
-          loading={loading}
-          available={loading ? false : data[selected].available}
+          available={isLoading ? false : data[selected].available}
+          loading={isLoading}
         />
       </Flex>
     </Box>

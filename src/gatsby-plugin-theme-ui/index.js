@@ -203,6 +203,10 @@ export default {
       bg: "gray.600",
       color: "white",
     },
+    muted: {
+      bg: "gray.300",
+      color: "gray.900",
+    },
     success: {
       variant: "badges.primary",
       bg: "green.600",
@@ -210,8 +214,23 @@ export default {
   },
   forms: {
     label: {
-      fontWeight: "600",
+      fontWeight: "500",
       fontSize: "1",
+      color: "gray.700",
+    },
+    select: {
+      borderColor: "gray.700",
+      "&:active": {
+        borderColor: "blue.600",
+      },
+    },
+  },
+  cards: {
+    primary: {
+      borderRadius: 8,
+      boxShadow:
+        "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+      p: 3,
     },
   },
 }

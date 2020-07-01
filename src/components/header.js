@@ -36,13 +36,11 @@ export default function Header() {
         zIndex: 100,
         backgroundColor: "background",
         py: 2,
-        mb: 2,
+        mb: 4,
         transition: "opacity 200ms ease",
-        borderStyle: "solid",
-        borderBottomWidth: 1,
+        borderBottom: "1px solid",
         borderColor: sticky ? "gray.200" : "transparent",
-      }}
-    >
+      }}>
       <Container px="3">
         <Grid columns={["2fr 1fr 2fr"]} gap={0}>
           <Flex sx={{ alignItems: "center" }}>

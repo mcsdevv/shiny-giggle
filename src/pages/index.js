@@ -16,19 +16,10 @@ export const query = graphql`
     allShopifyProduct(sort: { fields: updatedAt, order: DESC }) {
       nodes {
         id
-        handle
-        description
-        title
         shopifyId
-        images {
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 300) {
-                ...GatsbyImageSharpFluid_withWebp_tracedSVG
-              }
-            }
-          }
-        }
+        handle
+        title
+        description
         variants {
           availableForSale
           id
@@ -39,12 +30,13 @@ export const query = graphql`
             amount
           }
         }
-        priceRange {
-          maxVariantPrice {
-            amount
-          }
-          minVariantPrice {
-            amount
+        images {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 300) {
+                ...GatsbyImageSharpFluid_withWebp_tracedSVG
+              }
+            }
           }
         }
       }
