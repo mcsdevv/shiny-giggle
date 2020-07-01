@@ -1,14 +1,17 @@
 /** @jsx jsx */
-import { jsx, Button, Spinner, Box } from "theme-ui"
+import { jsx, Box } from "theme-ui"
 
 import { useAddItemToCart } from "gatsby-theme-shopify-manager"
 import { useState } from "react"
 
-export default function ButtonAdd({ id, qty, available, text, loading }) {
+import Button from "../button"
+
+export default function ProductButton({ id, qty, available, text, loading }) {
   const [buttonState, setButtonState] = useState("primary")
   const variantId = id
   const quantity = parseInt(qty)
   const hook = useAddItemToCart()
+
   function handleClick() {
     setButtonState("disabled")
     hook(variantId, quantity).then(() => {
@@ -20,30 +23,29 @@ export default function ButtonAdd({ id, qty, available, text, loading }) {
   function InnerButton() {
     if (!available) {
       return "Ausverkauft"
-    }
-    switch (buttonState) {
-      case "disabled":
-        return <Spinner variant="styles.loadingSpinner" size="24px" />
-      case "success":
-        return (
-          <svg
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            viewBox="0 0 24 24"
-            sx={{
-              stroke: "currentColor",
-              strokeWidth: "3px",
-              fill: "none",
-              width: "24px",
-            }}
-          >
-            <path d="M5 13l4 4L19 7"></path>
-          </svg>
-        )
-      default:
-        return text
+    } else {
+      switch (buttonState) {
+        case "success":
+          return (
+            <svg
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              viewBox="0 0 24 24"
+              sx={{
+                stroke: "currentColor",
+                strokeWidth: "3px",
+                fill: "none",
+                width: "24px",
+              }}>
+              <path d="M5 13l4 4L19 7"></path>
+            </svg>
+          )
+        default:
+          return text
+      }
     }
   }
+
   return (
     <Button
       onClick={handleClick}
@@ -54,7 +56,7 @@ export default function ButtonAdd({ id, qty, available, text, loading }) {
         !available ||
         loading
       }
-    >
+      loading={loading || buttonState === "disabled"}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <InnerButton />
       </Box>

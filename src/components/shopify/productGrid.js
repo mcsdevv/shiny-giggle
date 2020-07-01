@@ -3,6 +3,7 @@ import { jsx, Grid, Heading, Text } from "theme-ui"
 
 import Img from "gatsby-image"
 import SelectAdd from "./selectAdd"
+import { Link } from "gatsby"
 
 export default function ProductGrid({ products }) {
   return (
@@ -13,12 +14,14 @@ export default function ProductGrid({ products }) {
           "..."
         return (
           <div key={item.id}>
-            <Img
-              fluid={item.images[0].localFile.childImageSharp.fluid}
-              alt={item.title}
-            />
-            <Heading sx={{ fontSize: 3, my: 3 }}>{item.title}</Heading>
-            <Text my="3">{desc}</Text>
+            <Link to={item.handle}>
+              <Img
+                fluid={item.images[0].localFile.childImageSharp.fluid}
+                alt={item.title}
+              />
+              <Heading sx={{ fontSize: 3, my: 3 }}>{item.title}</Heading>
+              <Text my="3">{desc}</Text>
+            </Link>
             <SelectAdd variants={item.variants} id={item.shopifyId} />
           </div>
         )

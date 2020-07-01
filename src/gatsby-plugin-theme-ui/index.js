@@ -124,10 +124,11 @@ export default {
     ...base.styles,
     root: {
       ...base.styles.root,
+      fontSize: 16,
       lineHeight: "1.5",
     },
     loadingSpinner: {
-      color: "gray.500",
+      color: "currentColor",
     },
   },
   buttons: {
@@ -135,7 +136,7 @@ export default {
       bg: "blue.200",
       color: "blue.900",
       fontWeight: 500,
-      transition: "color, background-color 200ms ease",
+      transition: "color, background-color 300ms ease",
       "&:hover": {
         bg: "blue.300",
       },

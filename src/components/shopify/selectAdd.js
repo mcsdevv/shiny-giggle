@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { useState, useEffect } from "react"
-import { jsx, Select, Box, Flex, Spinner } from "theme-ui"
+import { jsx, Select, Box, Flex } from "theme-ui"
 
 import { useClientUnsafe } from "gatsby-theme-shopify-manager"
-import ButtonAdd from "./buttonAdd"
+import ProductButton from "./productButton"
 
 export default function SelectAdd({ variants, id }) {
   const shopify = useClientUnsafe()
@@ -12,14 +12,13 @@ export default function SelectAdd({ variants, id }) {
   const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState(variants.length - 1)
   const [data, setData] = useState(initialData)
-  // Using the client hook to get common changed data on runtime
+  // Using the client hook to fetch availability on runtime
   useEffect(() => {
     shopify.product
       .fetch(id)
       .then(product => {
         const update = product.variants.map(i => {
           return {
-            price: i.priceV2.amount,
             available: i.available,
           }
         })
@@ -45,7 +44,9 @@ export default function SelectAdd({ variants, id }) {
   )
   const PriceBox = () => (
     <Box>
-      <span sx={{ fontSize: 4, fontWeight: 500 }}>{data[selected].price}</span>
+      <span sx={{ fontSize: 4, fontWeight: 500 }}>
+        {variants[selected].priceV2.amount}
+      </span>
       <span sx={{ fontSize: 2, ml: 1 }}>€</span>
     </Box>
   )
@@ -55,12 +56,8 @@ export default function SelectAdd({ variants, id }) {
         <SelectField />
       </Box>
       <Flex sx={{ justifyContent: "space-between", alignItems: "center" }}>
-        {loading ? (
-          <Spinner size="24px" variant="styles.loadingSpinner" />
-        ) : (
-          <PriceBox />
-        )}
-        <ButtonAdd
+        <PriceBox />
+        <ProductButton
           id={variants[selected].shopifyId}
           qty={1}
           text="In den Warenkorb"

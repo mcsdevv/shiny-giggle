@@ -12,7 +12,6 @@ module.exports = {
   plugins: [
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-theme-ui",
-    "gatsby-plugin-layout",
     {
       resolve: "gatsby-theme-shopify-manager",
       options: {
