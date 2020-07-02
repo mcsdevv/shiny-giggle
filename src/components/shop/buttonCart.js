@@ -8,17 +8,19 @@ export default function CartButton() {
   const isSsr = typeof window === "undefined"
   const getCount = useCartCount()
   const count = isSsr ? 0 : getCount
-  const [cartCount, setCartCount] = useState(count)
+  const [notEmpty, setNotEmpty] = useState(false)
   useEffect(() => {
-    setCartCount(getCount)
+    if (count > 0) {
+      setNotEmpty(true)
+    }
   }, [getCount])
   return (
     <Link to="/warenkorb">
-      <Button variant={cartCount > 0 ? "success" : "loading"}>
+      <Button variant={notEmpty ? "success" : "loading"}>
         <div className="flex items-center">
           Warenkorb
-          <Badge variant={cartCount > 0 ? "success" : "muted"} className="ml-2">
-            {cartCount}
+          <Badge variant={notEmpty ? "success" : "muted"} className="ml-2">
+            {count}
           </Badge>
         </div>
       </Button>
