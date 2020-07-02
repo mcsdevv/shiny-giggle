@@ -2,13 +2,12 @@ import React from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby"
 import ProductGrid from "../components/shop/gridProducts"
-import Layout from "../layouts"
 
 const IndexPage = ({ data }) => (
-  <Layout>
+  <>
     <SEO title="Home" />
     <ProductGrid products={data.allShopifyProduct.nodes} />
-  </Layout>
+  </>
 )
 
 export const query = graphql`

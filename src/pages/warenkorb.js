@@ -3,7 +3,6 @@ import React, { useState } from "react"
 import ProductList from "../components/shop/listProducts"
 import SEO from "../components/seo"
 import Button from "../components/button"
-import Layout from "../layouts"
 import { dotToComma } from "../utils/dotToComma"
 
 import {
@@ -40,7 +39,7 @@ export default function Warenkorb() {
     removeItems(all)
   }
   return (
-    <Layout>
+    <>
       <SEO title="Warenkorb" />
       <h3 className="text-3xl font-bold mb-4">Warenkorb</h3>
       <div className="grid md:grid-cols-2 gap-8">
@@ -104,6 +103,6 @@ export default function Warenkorb() {
           </div>
         )}
       </div>
-    </Layout>
+    </>
   )
 }

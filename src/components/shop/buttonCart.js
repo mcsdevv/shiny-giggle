@@ -12,14 +12,16 @@ export default function CartButton() {
   useEffect(() => {
     if (count > 0) {
       setNotEmpty(true)
-    }
-  }, [getCount])
+    } else setNotEmpty(false)
+  }, [getCount, count])
   return (
     <Link to="/warenkorb">
-      <Button variant={notEmpty ? "success" : "loading"}>
+      <Button variant={notEmpty || count > 0 ? "success" : "loading"}>
         <div className="flex items-center">
           Warenkorb
-          <Badge variant={notEmpty ? "success" : "muted"} className="ml-2">
+          <Badge
+            variant={notEmpty || count > 0 ? "success" : "muted"}
+            className="ml-2">
             {count}
           </Badge>
         </div>
