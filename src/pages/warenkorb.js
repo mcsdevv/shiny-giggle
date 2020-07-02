@@ -17,7 +17,8 @@ export default function Warenkorb() {
   const cart = useCart()
   const cartCount = useCartCount()
   const goCheckout = useCheckoutUrl()
-  const subtotal = parseFloat(cart.subtotalPrice)
+  const isSsr = typeof window === "undefined"
+  const subtotal = isSsr ? 0 : parseFloat(cart.subtotalPrice)
   const shipping = subtotal > 50 ? 0 : 3.99
   const total = subtotal + shipping
   const totalComma = Number.parseFloat(total).toFixed(2)
@@ -49,7 +50,7 @@ export default function Warenkorb() {
               ? `Artikel im Warenkorb: ${cartCount}`
               : "Der Warenkorb ist leer."}
           </p>
-          <ProductList products={cart.lineItems} />
+          {!isSsr && <ProductList products={cart.lineItems} />}
         </div>
         {cartCount > 0 && (
           <div>
