@@ -1,12 +1,9 @@
-/** @jsx jsx */
-import { jsx, Box, Grid, Flex, Container } from "theme-ui"
-
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 
 import Logo from "./logo"
 import Nav from "./nav"
-import CartButton from "./shopify/cartButton"
+import CartButton from "./shop/buttonCart"
 
 export default function Header() {
   const [sticky, setSticky] = useState(false)
@@ -26,40 +23,25 @@ export default function Header() {
   }, [])
 
   return (
-    <Box
-      as="header"
-      sx={{
-        position: "sticky",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        backgroundColor: "background",
-        py: 2,
-        mb: 4,
-        transition: "opacity 200ms ease",
-        borderBottom: "1px solid",
-        borderColor: sticky ? "gray.200" : "transparent",
-      }}>
-      <Container px="3">
-        <Grid columns={["2fr 1fr 2fr"]} gap={0}>
-          <Flex sx={{ alignItems: "center" }}>
+    <header
+      className={`bg-white py-4 border-b border-transparent transition-colors duration-200 sticky top-0 mb-8 z-50 ${
+        sticky && `border-gray-300`
+      }`}>
+      <div className="container mx-auto">
+        <div className="grid grid-cols-3">
+          <div className="flex items-center">
             <Nav />
-          </Flex>
-          <Flex sx={{ justifyContent: "space-around", alignItems: "center" }}>
+          </div>
+          <div className="flex items-center justify-center">
             <Link to="/">
-              <Logo
-                sx={{
-                  width: 60,
-                }}
-              />
+              <Logo className="w-12" />
             </Link>
-          </Flex>
-          <Flex sx={{ alignItems: "center", flexDirection: "row-reverse" }}>
+          </div>
+          <div className="flex items-center justify-end">
             <CartButton />
-          </Flex>
-        </Grid>
-      </Container>
-    </Box>
+          </div>
+        </div>
+      </div>
+    </header>
   )
 }

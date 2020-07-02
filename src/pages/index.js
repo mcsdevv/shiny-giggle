@@ -1,7 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
 import { graphql } from "gatsby"
-import ProductGrid from "../components/shopify/productGrid"
+import ProductGrid from "../components/shop/gridProducts"
 import Layout from "../layouts"
 
 const IndexPage = ({ data }) => (

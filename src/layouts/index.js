@@ -1,17 +1,16 @@
-/** @jsx jsx */
-import { jsx, Container, Box } from "theme-ui"
+import React from "react"
 
 import PropTypes from "prop-types"
 import Header from "../components/header"
 
 const Layout = ({ children }) => {
   return (
-    <Box>
+    <div>
       <Header />
-      <Container px="3" pb="4">
+      <div className="container mx-auto mb-16">
         <main>{children}</main>
-      </Container>
-    </Box>
+      </div>
+    </div>
   )
 }
 

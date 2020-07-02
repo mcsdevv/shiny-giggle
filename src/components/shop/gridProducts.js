@@ -1,31 +1,29 @@
-/** @jsx jsx */
-import { jsx, Grid, Heading, Text } from "theme-ui"
-
+import React from "react"
 import Img from "gatsby-image"
-import SelectAdd from "./selectAdd"
+import SelectAdd from "./selectAddProduct"
 import { Link } from "gatsby"
 
 export default function ProductGrid({ products }) {
   return (
-    <Grid columns={[null, "repeat(2, 1fr)", "repeat(3, 1fr)"]} gap="4">
+    <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
       {products.map(item => {
         const desc =
           item.description.substr(0, item.description.lastIndexOf(" ", 100)) +
           "..."
         return (
-          <div key={item.id}>
+          <li key={item.id}>
             <Link to={item.handle}>
               <Img
                 fluid={item.images[0].localFile.childImageSharp.fluid}
                 alt={item.title}
               />
-              <Heading sx={{ fontSize: 3, my: 3 }}>{item.title}</Heading>
-              <Text my="3">{desc}</Text>
+              <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+              <p className="text-sm mb-2">{desc}</p>
             </Link>
             <SelectAdd variants={item.variants} id={item.shopifyId} />
-          </div>
+          </li>
         )
       })}
-    </Grid>
+    </ul>
   )
 }

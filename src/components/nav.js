@@ -1,25 +1,22 @@
-/** @jsx jsx */
-import { jsx, Box, Button } from "theme-ui"
+import React from "react"
 import { Home } from "./icons"
 import { Link } from "gatsby"
+import Button from "./button"
 
 export default function Nav() {
   return (
-    <Box sx={{ display: ["none", "flex", null] }}>
-      <Button
-        as={Link}
-        to="/"
-        variant="ghost"
-        sx={{ display: "flex", alignItems: "center" }}
-      >
-        <Home width="1rem" />
+    <div className="flex items-center">
+      <Button variant="ghost">
+        <Link to="/">
+          <Home className="py-1 w-4" />
+        </Link>
       </Button>
-      <Button as={Link} to="/" variant="ghost">
-        Kochen
+      <Button variant="ghost">
+        <Link to="/">Grillen</Link>
       </Button>
-      <Button as={Link} to="/" variant="ghost">
-        Grillen
+      <Button variant="ghost">
+        <Link to="/">Kochen</Link>
       </Button>
-    </Box>
+    </div>
   )
 }
