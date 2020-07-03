@@ -10,18 +10,6 @@ module.exports = {
     author: "@derjohnschmidt",
   },
   plugins: [
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-postcss",
-    "gatsby-plugin-layout",
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "images",
-        path: `${__dirname}/src/images`,
-      },
-    },
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
     {
       resolve: "gatsby-source-shopify",
       options: {
@@ -37,5 +25,10 @@ module.exports = {
         shouldIncludeSourcePlugin: false,
       },
     },
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-postcss",
+    "gatsby-plugin-layout",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
   ],
 }
