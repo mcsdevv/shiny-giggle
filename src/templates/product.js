@@ -28,6 +28,7 @@ export default function ({ data }) {
       setRefreshed(upd)
       setLoading(false)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   console.log(refreshed)
   return (

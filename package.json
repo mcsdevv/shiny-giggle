@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.4",
+    "eslint-config-react-app": "^5.2.1",
     "postcss-nested": "^4.2.1",
     "prettier": "2.0.5",
     "tailwindcss": "^1.4.6"
