@@ -1,7 +1,7 @@
 import React from "react"
-import SEO from "../components/seo.js"
-import ProductList from "../components/productList.js"
-import CartSummary from "../components/cartSummary.js"
+import SEO from "../components/seo"
+import ProductList from "../components/productList"
+import CartSummary from "../components/cartSummary"
 
 import { useCartCount, useCartItems } from "gatsby-theme-shopify-manager"
 import { graphql } from "gatsby"

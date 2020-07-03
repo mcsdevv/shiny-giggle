@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useAddItemToCart } from "gatsby-theme-shopify-manager"
-import Button from "./button.js"
+import Button from "./button"
 
 export default function ProductButton({ id, qty, available, loading, text }) {
   const addItemToCart = useAddItemToCart()
