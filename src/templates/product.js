@@ -30,7 +30,6 @@ export default function ({ data }) {
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  console.log(refreshed)
   return (
     <div className="grid md:grid-cols-2">
       <SEO title={title} />
