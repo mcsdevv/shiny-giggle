@@ -14,6 +14,15 @@ module.exports = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-layout",
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: `${__dirname}/src/images`,
+      },
+    },
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
+    {
       resolve: "gatsby-source-shopify",
       options: {
         shopName: process.env.SHOPIFY_URL,
@@ -28,7 +37,5 @@ module.exports = {
         shouldIncludeSourcePlugin: false,
       },
     },
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
   ],
 }

@@ -39,5 +39,14 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
-  }
+  },
+  "main": "gatsby-browser.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jopesh/shiny-giggle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jopesh/shiny-giggle/issues"
+  },
+  "homepage": "https://github.com/jopesh/shiny-giggle#readme"
 }
