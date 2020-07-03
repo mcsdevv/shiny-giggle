@@ -1,7 +1,7 @@
 import React from "react"
 import { Home } from "./icons"
 import { Link } from "gatsby"
-import Button from "./button"
+import Button from "./Button"
 
 export default function Nav() {
   return (

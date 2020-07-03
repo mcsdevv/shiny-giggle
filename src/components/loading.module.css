@@ -1,12 +1,12 @@
 .loading {
   display: flex;
   align-items: center;
-  min-height: 1.5rem;
+  justify-content: center;
 }
 .dot {
   border-radius: 100%;
   background-color: currentColor;
-  animation: dot-animation-1 1.3s infinite ease-in;
+  animation: dot-animation-1 1s infinite ease-in;
   opacity: 0;
   transform: rotate(0.1deg);
   width: 4px;

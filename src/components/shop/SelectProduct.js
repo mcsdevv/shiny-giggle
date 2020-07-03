@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
+import ProductButton from "./ProductButton"
+import Select from "../Select"
 
 import { useClientUnsafe } from "gatsby-theme-shopify-manager"
 import { dotToComma } from "../../utils/dotToComma"
-import ProductButton from "./buttonAddProduct"
 
-export default function SelectAdd({ id, variants }) {
+export default function SelectProduct({ id, variants }) {
   const shopify = useClientUnsafe()
   const initialState = []
   // Initialize state
@@ -36,36 +37,18 @@ export default function SelectAdd({ id, variants }) {
   return (
     <div className="max-w-sm">
       <form id={"selectForm-" + id} className="mb-2">
-        <label htmlFor={"select-" + id}>
-          <span className="text-xs block">Variante auswählen:</span>
-          <div className="relative">
-            <select
-              className="appearance-none p-2 border-black w-full border rounded"
-              value={selected}
-              onChange={handleChange}
-              onBlur={handleChange}
-              id={"select-" + id}
-              name={"select-" + id}>
-              {variants.map((v, i) => (
-                <option value={i} key={v.id}>
-                  {v.title}
-                </option>
-              ))}
-            </select>
-            <div className="absolute right-0 inset-y-0 flex items-center">
-              <svg fill="currentColor" viewBox="0 0 20 20" className="w-6">
-                <path
-                  fillRule="evenodd"
-                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  clipRule="evenodd"></path>
-              </svg>
-            </div>
-          </div>
-        </label>
+        <Select
+          label="Variante auswählen:"
+          id={"select-" + id}
+          options={variants}
+          value={selected}
+          onChange={handleChange}
+          name="select-variant"
+        />
       </form>
       <div className="flex items-center justify-between">
-        <p>
-          <span className="text-2xl font-medium">{price} </span>
+        <p className="font-semibold">
+          <span className="text-2xl mr-2">{price}</span>
           <span>€</span>
         </p>
         <ProductButton

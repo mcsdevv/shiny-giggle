@@ -1,7 +1,7 @@
 import React from "react"
 import style from "./loading.module.css"
 
-export default function LoadingDots() {
+export default function Loading() {
   return (
     <ul className={style.loading}>
       <li className={style.dot} />

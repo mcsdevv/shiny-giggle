@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useAddItemToCart } from "gatsby-theme-shopify-manager"
-import Button from "../button"
+import Button from "../Button"
 
 export default function ProductButton({ id, qty, available, loading, text }) {
   const addItemToCart = useAddItemToCart()
@@ -16,28 +16,12 @@ export default function ProductButton({ id, qty, available, loading, text }) {
       })
       .catch(error => console.log(error))
   }
-  function InnerButton() {
-    if (!available) {
+  function Inner() {
+    if (loading) {
+      return text
+    } else if (!loading && !available) {
       return "Ausverkauft"
-    } else {
-      switch (buttonState) {
-        case "success":
-          return (
-            <svg
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="3px"
-              fill="none"
-              className="w-6">
-              <path d="M5 13l4 4L19 7"></path>
-            </svg>
-          )
-        default:
-          return text
-      }
-    }
+    } else return text
   }
 
   const isDisabled =
@@ -46,15 +30,16 @@ export default function ProductButton({ id, qty, available, loading, text }) {
     !available ||
     loading
   const isLoading = loading || buttonState === "loading"
-  const variant = available ? buttonState : "loading"
+  const variant = available ? buttonState : "muted"
 
   return (
     <Button
       onClick={handleClick}
       variant={variant}
       disabled={isDisabled}
-      loading={isLoading}>
-      <InnerButton />
+      loading={isLoading}
+      confirmed={buttonState === "success"}>
+      <Inner />
     </Button>
   )
 }

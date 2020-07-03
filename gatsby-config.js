@@ -14,10 +14,18 @@ module.exports = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-layout",
     {
+      resolve: "gatsby-source-shopify",
+      options: {
+        shopName: process.env.SHOPIFY_URL,
+        accessToken: process.env.SHOPIFY_API_TOKEN,
+      },
+    },
+    {
       resolve: "gatsby-theme-shopify-manager",
       options: {
         shopName: process.env.SHOPIFY_URL,
         accessToken: process.env.SHOPIFY_API_TOKEN,
+        shouldIncludeSourcePlugin: false,
       },
     },
     "gatsby-transformer-sharp",

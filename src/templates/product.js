@@ -1,9 +1,9 @@
 import React from "react"
+import Img from "gatsby-image"
+import SelectProduct from "../components/shop/SelectProduct"
+import SEO from "../components/Seo"
 
 import { graphql } from "gatsby"
-
-import Img from "gatsby-image"
-import SelectAdd from "../components/shop/selectAddProduct"
 
 export default function ({ data }) {
   const {
@@ -15,6 +15,7 @@ export default function ({ data }) {
   } = data.shopifyProduct
   return (
     <div className="grid md:grid-cols-2">
+      <SEO title={title} />
       <div>
         <Img fluid={images[0].localFile.childImageSharp.fluid} />
       </div>
@@ -25,7 +26,7 @@ export default function ({ data }) {
           dangerouslySetInnerHTML={{ __html: descriptionHtml }}
         />
         <div mt="4" sx={{ maxWidth: 300 }}>
-          <SelectAdd id={shopifyId} variants={variants} />
+          <SelectProduct id={shopifyId} variants={variants} />
         </div>
       </div>
     </div>
