@@ -1,7 +1,7 @@
 import React from "react"
 import Img from "gatsby-image"
-import SelectProduct from "../components/shop/SelectProduct"
-import SEO from "../components/Seo"
+import SelectProduct from "../components/shop/selectProduct"
+import SEO from "../components/seo"
 
 import { graphql } from "gatsby"
 

@@ -1,6 +1,6 @@
 import React from "react"
 import Img from "gatsby-image"
-import SelectProduct from "./SelectProduct"
+import SelectProduct from "./selectProduct"
 
 import { Link } from "gatsby"
 

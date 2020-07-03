@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import Button from "../Button"
+import Button from "../button"
+
 import { useCart, useRemoveItemsFromCart } from "gatsby-theme-shopify-manager"
 import { dotToComma } from "../../utils/dotToComma"
 

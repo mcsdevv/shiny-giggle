@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
-import Button from "../Button"
-import Badge from "../Badge"
+import Button from "../button"
+import Badge from "../badge"
 
 import { Link } from "gatsby"
 import { useCartCount } from "gatsby-theme-shopify-manager"
