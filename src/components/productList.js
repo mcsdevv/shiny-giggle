@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Button from "./button"
+import Button from "./button.js"
 import Img from "gatsby-image"
 
 import {

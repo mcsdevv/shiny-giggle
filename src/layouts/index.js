@@ -1,7 +1,7 @@
 import React from "react"
 
 import PropTypes from "prop-types"
-import Header from "../components/header"
+import Header from "../components/header.js"
 
 const Layout = ({ children }) => {
   return (

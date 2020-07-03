@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 
-import { Logo } from "./icons"
-import Nav from "./nav"
-import CartButton from "./cartButton"
+import { Logo } from "./icons.js"
+import Nav from "./nav.js"
+import CartButton from "./cartButton.js"
 
 export default function Header() {
   const [sticky, setSticky] = useState(false)

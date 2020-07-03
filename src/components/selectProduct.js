@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
-import ProductButton from "./productButton"
-import Select from "./select"
+import ProductButton from "./productButton.js"
+import Select from "./select.js"
 
 import { useClientUnsafe } from "gatsby-theme-shopify-manager"
-import { dotToComma } from "../utils/dotToComma"
+import { dotToComma } from "../utils/dotToComma.js"
 
 export default function SelectProduct({ id, variants }) {
   const shopify = useClientUnsafe()

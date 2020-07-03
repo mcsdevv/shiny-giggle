@@ -1,5 +1,5 @@
 import React from "react"
-import Loading from "./loading"
+import Loading from "./loading.js"
 
 export default function Button(props) {
   const variants = {
