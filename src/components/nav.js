@@ -5,7 +5,7 @@ import Button from "./button"
 
 export default function Nav() {
   return (
-    <div className="flex items-center">
+    <div className="items-center hidden md:flex">
       <Button variant="ghost">
         <Link to="/">
           <Home className="py-1 w-4" />

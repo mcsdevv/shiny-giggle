@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Img from "gatsby-image"
 import SelectProduct from "../components/selectProduct"
 import SEO from "../components/seo"
 
 import { graphql } from "gatsby"
+import { useClientUnsafe } from "gatsby-theme-shopify-manager"
 
 export default function ({ data }) {
   const {
@@ -13,6 +14,22 @@ export default function ({ data }) {
     shopifyId,
     variants,
   } = data.shopifyProduct
+
+  const shopify = useClientUnsafe()
+  const [refreshed, setRefreshed] = useState([])
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    shopify.product.fetch(shopifyId).then(product => {
+      const upd = product.variants.map(variant => {
+        return {
+          available: variant.available,
+        }
+      })
+      setRefreshed(upd)
+      setLoading(false)
+    })
+  }, [])
+  console.log(refreshed)
   return (
     <div className="grid md:grid-cols-2">
       <SEO title={title} />
@@ -26,7 +43,12 @@ export default function ({ data }) {
           dangerouslySetInnerHTML={{ __html: descriptionHtml }}
         />
         <div mt="4" sx={{ maxWidth: 300 }}>
-          <SelectProduct id={shopifyId} variants={variants} />
+          <SelectProduct
+            id={shopifyId}
+            variants={variants}
+            availability={refreshed}
+            loading={loading}
+          />
         </div>
       </div>
     </div>
@@ -42,6 +64,7 @@ export const query = graphql`
       title
       descriptionHtml
       variants {
+        availableForSale
         id
         shopifyId
         title

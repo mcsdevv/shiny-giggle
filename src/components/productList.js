@@ -51,13 +51,13 @@ function ListItem({ data, staticVariants }) {
   // console.log(data.variant.id)
   // Render
   return (
-    <li className="flex justify-between items-center pb-4 mb-4 border-b border-gray-200">
+    <li className="md:flex justify-between items-center pb-4 mb-4 border-b border-gray-200">
       <Img
         fixed={getVariantFixedImage()}
         alt={data.variant.title}
         className="mr-2"
       />
-      <div className="flex-grow">
+      <div>
         <h4 className="font-bold">{data.title}</h4>
         <div className="text-sm text-gray-800">
           <p>
@@ -71,14 +71,14 @@ function ListItem({ data, staticVariants }) {
           </button>
         </div>
       </div>
-      <div className="flex-shrink-0">
+      <div>
         <label htmlFor={"change-label-" + data.variant.id}>
           <p className="text-sm">Anzahl:</p>
           <div className="flex">
             <input
               className={`border-t border-l border-b rounded-l transition-colors duration-200 outline-none ${
                 noChange || loading ? "border-gray-500" : "border-green-400"
-              } p-2 w-16`}
+              } p-2 md:w-16`}
               type="number"
               id={"change-label-" + data.variant.id}
               value={quantity}
@@ -87,7 +87,7 @@ function ListItem({ data, staticVariants }) {
             />
             <Button
               variant={noChange ? "loading" : "success"}
-              className="w-12 flex-grow border-r border-t border-b border-gray-500"
+              className="md:w-12 flex-grow border-r border-t border-b border-gray-500"
               loading={loading}
               onClick={e => handleChange(e)}
               title="Anzahl übernehmen"

@@ -27,7 +27,7 @@ export default function Header() {
       className={`bg-white py-4 border-b border-transparent transition-colors duration-200 sticky top-0 mb-8 z-50 ${
         sticky && `border-gray-300`
       }`}>
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-3">
           <div className="flex items-center">
             <Nav />
