@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 
 import { Logo } from "./icons"
 import Nav from "./nav"
-import CartButton from "./shop/cartButton"
+import CartButton from "./shopify/cartButton"
 
 export default function Header() {
   const [sticky, setSticky] = useState(false)
