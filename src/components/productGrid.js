@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Img from 'gatsby-image'
 import SelectProduct from './selectProduct'
+import { Grid, Heading, Text, Box } from '@chakra-ui/core'
 
 import { Link } from 'gatsby'
 import { useClientUnsafe } from 'gatsby-theme-shopify-manager'
@@ -8,7 +9,7 @@ import { useClientUnsafe } from 'gatsby-theme-shopify-manager'
 export default function ProductGrid ({ products }) {
   const shopify = useClientUnsafe()
   const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [fetching, setFetching] = useState(true)
   const productIds = products.map(p => p.shopifyId)
   // Update availability on runtime
   useEffect(() => {
@@ -24,34 +25,34 @@ export default function ProductGrid ({ products }) {
           })
         })
         setData(data)
-        setLoading(false)
+        setFetching(false)
       })
       .catch(error => {
         console.log(error)
       })
   }, [])
+  const shorten = (str) => {
+    return str.substr(0, str.lastIndexOf(' ', 75)) + '...'
+  }
   return (
-    <ul className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
+    <Grid templateColumns={['repeat(2, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)']} gap='8'>
       {products.map((item, index) => {
-        const desc =
-          item.description.substr(0, item.description.lastIndexOf(' ', 75)) +
-          '...'
+        const desc = shorten(item.description)
         return (
-          <li key={item.id}>
-            <Link to={item.handle}>
+          <Box key={item.id}>
+            <Box as={Link} to={item.handle} mb='2' display='block'>
               <Img fluid={item.images[0].localFile.childImageSharp.fluid} />
-              <h3 className='text-lg font-bold mb-2'>{item.title}</h3>
-              <p className='text-sm mb-2'>{desc}</p>
-            </Link>
+              <Heading size='sm'>{item.title}</Heading>
+              <Text fontSize='xs'>{desc}</Text>
+            </Box>
             <SelectProduct
               variants={item.variants}
-              id={item.shopifyId}
-              availability={data[index]}
-              loading={loading}
+              fetching={fetching}
+              fetchedVariants={data[index]}
             />
-          </li>
+          </Box>
         )
       })}
-    </ul>
+    </Grid>
   )
 }

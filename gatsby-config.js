@@ -18,7 +18,12 @@ module.exports = {
         shouldIncludeSourcePlugin: true
       }
     },
-    'gatsby-plugin-chakra-ui',
+    {
+      resolve: 'gatsby-plugin-chakra-ui',
+      options: {
+        isUsingColorMode: false
+      }
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',

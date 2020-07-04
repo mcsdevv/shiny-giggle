@@ -1,44 +1,43 @@
 import React, { useState } from 'react'
-import ProductButton from './productButton'
-import Select from './selectField'
-
+import { Select, Box, Button, Flex, Text, FormControl, FormLabel } from '@chakra-ui/core'
 import { dotToComma } from '../utils/dotToComma'
+import { useAddItemToCart } from 'gatsby-theme-shopify-manager'
 
-export default function SelectProduct ({ id, variants, availability, loading }) {
+export default function SelectProduct ({ variants, fetching, fetchedVariants }) {
+  // Add hooks
+  const addItem = useAddItemToCart()
   // Initialize state
   const [selected, setSelected] = useState(variants.length - 1)
-  function handleChange (e) {
+  const [adding, setAdding] = useState(false)
+  const available = fetching ? variants[selected].availableForSale : fetchedVariants[selected].available
+  // Handle events
+  const handleChange = (e) => {
     setSelected(e.target.value)
+  }
+  const handleAdd = () => {
+    setAdding(true)
+    addItem(variants[selected].shopifyId, 1).then(() => {
+      setAdding(false)
+    }).catch(e => console.log(e))
   }
   const price = dotToComma(variants[selected].priceV2.amount)
   return (
-    <div className='max-w-sm'>
-      <form id={'selectForm-' + id} className='mb-2'>
-        <Select
-          label='Variante auswählen:'
-          id={'select-' + id}
-          options={variants}
-          value={selected}
-          onChange={handleChange}
-          name='select-variant'
-        />
-      </form>
-      <div className='flex items-center justify-between'>
-        <p className='font-semibold'>
-          <span className='text-2xl mr-2'>{price}</span>
-          <span>€</span>
-        </p>
-        <ProductButton
-          id={variants[selected].shopifyId}
-          qty={1}
-          text='In den Warenkorb'
-          available={
-            loading
-              ? variants[selected].availableForSale
-              : availability[selected].available
-          }
-        />
-      </div>
-    </div>
+    <Box>
+      <FormControl>
+        <FormLabel fontSize='xs'>Variante auswählen:</FormLabel>
+        <Select size='sm' value={selected} onChange={handleChange}>
+          {variants.map((variant, index) => (
+            <option key={variant.id} value={index}>{variant.title}</option>
+          ))}
+        </Select>
+      </FormControl>
+      <Flex justifyContent='space-between' alignItems='center' mt='2'>
+        <Box>
+          <Text as='span' fontSize='xl' fontWeight='medium'>{price}</Text>
+          <Text as='span' ml='2'>€</Text>
+        </Box>
+        <Button variantColor='purple' isLoading={adding} onClick={handleAdd} isDisabled={!available}>{available ? 'Hinzufügen' : 'Ausverkauft'}</Button>
+      </Flex>
+    </Box>
   )
 }

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 
 import { Logo } from './icons'
-import Nav from './nav'
 import CartButton from './cartButton'
+import { Box, Grid, Flex } from '@chakra-ui/core'
 
 export default function Header () {
   const [sticky, setSticky] = useState(false)
@@ -23,26 +23,20 @@ export default function Header () {
   }, [])
 
   return (
-    <header
-      className={`bg-white py-4 border-b border-transparent transition-colors duration-200 sticky top-0 mb-8 z-50 ${
-        sticky && 'border-gray-300'
-      }`}
-    >
-      <div className='container mx-auto px-4'>
-        <div className='grid grid-cols-3'>
-          <div className='flex items-center'>
-            <Nav />
-          </div>
-          <div className='flex items-center justify-center'>
-            <Link to='/'>
-              <Logo className='w-12' />
-            </Link>
-          </div>
-          <div className='flex items-center justify-end'>
-            <CartButton />
-          </div>
-        </div>
-      </div>
-    </header>
+    <Box pos='sticky' top='0' zIndex='100' bg='white' py={4} borderBottom='1px solid transparent' borderBottomColor={sticky && 'gray.100'} transition='border-color 200ms ease'>
+      <Grid mx='auto' maxWidth='1024px' templateColumns='repeat(3, 1fr)'>
+        <Flex justifyContent='center' alignItems='center' />
+        <Flex justifyContent='center' alignItems='center'>
+          <Link to='/'>
+            <Box w='12'>
+              <Logo />
+            </Box>
+          </Link>
+        </Flex>
+        <Flex justifyContent='end' alignItems='center'>
+          <CartButton />
+        </Flex>
+      </Grid>
+    </Box>
   )
 }

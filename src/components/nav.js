@@ -1,8 +1,7 @@
 import React from 'react'
 import { Home } from './icons'
 import { Link } from 'gatsby'
-import Button from './button'
-
+import { Button } from '@chakra-ui/core'
 export default function Nav () {
   return (
     <div className='items-center hidden md:flex'>
