@@ -1,10 +1,10 @@
 module.exports = {
-  purge: ["./src/**/*.js"],
+  purge: ['./src/**/*.js'],
   theme: {
-    extend: {},
+    extend: {}
   },
   variants: {
-    backgroundColor: ["responsive", "hover", "focus", "active"],
+    backgroundColor: ['responsive', 'hover', 'focus', 'active']
   },
-  plugins: [],
+  plugins: []
 }

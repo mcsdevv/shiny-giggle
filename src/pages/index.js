@@ -1,11 +1,11 @@
-import React from "react"
-import { graphql } from "gatsby"
-import SEO from "../components/seo"
-import ProductGrid from "../components/productGrid"
+import React from 'react'
+import { graphql } from 'gatsby'
+import Seo from '../components/seo'
+import ProductGrid from '../components/productGrid'
 
 const IndexPage = ({ data }) => (
   <>
-    <SEO title="Home" />
+    <Seo title='Home' />
     <ProductGrid products={data.allShopifyProduct.nodes} />
   </>
 )

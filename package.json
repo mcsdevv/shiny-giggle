@@ -24,9 +24,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.4",
-    "eslint-config-react-app": "^5.2.1",
     "postcss-nested": "^4.2.1",
-    "prettier": "2.0.5",
+    "standard": "^14.3.4",
     "tailwindcss": "^1.4.6"
   },
   "keywords": [
@@ -36,7 +35,7 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "fix": "standard --fix",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean"

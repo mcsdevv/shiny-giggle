@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react"
-import Img from "gatsby-image"
-import SelectProduct from "../components/selectProduct"
-import SEO from "../components/seo"
+import React, { useEffect, useState } from 'react'
+import Img from 'gatsby-image'
+import SelectProduct from '../components/selectProduct'
+import Seo from '../components/seo'
 
-import { graphql } from "gatsby"
-import { useClientUnsafe } from "gatsby-theme-shopify-manager"
+import { graphql } from 'gatsby'
+import { useClientUnsafe } from 'gatsby-theme-shopify-manager'
 
 export default function ({ data }) {
   const {
@@ -12,7 +12,7 @@ export default function ({ data }) {
     images,
     descriptionHtml,
     shopifyId,
-    variants,
+    variants
   } = data.shopifyProduct
 
   const shopify = useClientUnsafe()
@@ -22,27 +22,26 @@ export default function ({ data }) {
     shopify.product.fetch(shopifyId).then(product => {
       const upd = product.variants.map(variant => {
         return {
-          available: variant.available,
+          available: variant.available
         }
       })
       setRefreshed(upd)
       setLoading(false)
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
-    <div className="grid md:grid-cols-2">
-      <SEO title={title} />
+    <div className='grid md:grid-cols-2'>
+      <Seo title={title} />
       <div>
         <Img fluid={images[0].localFile.childImageSharp.fluid} />
       </div>
       <div>
-        <h3 className="text-3xl font-bold mb-4">{title}</h3>
+        <h3 className='text-3xl font-bold mb-4'>{title}</h3>
         <div
-          className="mb-4"
+          className='mb-4'
           dangerouslySetInnerHTML={{ __html: descriptionHtml }}
         />
-        <div mt="4" sx={{ maxWidth: 300 }}>
+        <div mt='4' sx={{ maxWidth: 300 }}>
           <SelectProduct
             id={shopifyId}
             variants={variants}

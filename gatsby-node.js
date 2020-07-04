@@ -1,4 +1,4 @@
-const path = require("path")
+const path = require('path')
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
@@ -13,16 +13,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `)
   if (result.error) {
-    reporter.panicOnBuild("ERROR: createPages query")
+    reporter.panicOnBuild('ERROR: createPages query')
   }
   const products = result.data.allShopifyProduct.nodes
   products.forEach(product => {
     createPage({
       path: product.handle,
-      component: path.resolve("./src/templates/product.js"),
+      component: path.resolve('./src/templates/product.js'),
       context: {
-        id: product.id,
-      },
+        id: product.id
+      }
     })
   })
 }

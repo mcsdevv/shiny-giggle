@@ -1,13 +1,13 @@
-import React from "react"
+import React from 'react'
 
-import PropTypes from "prop-types"
-import Header from "../components/header"
+import PropTypes from 'prop-types'
+import Header from '../components/header'
 
 const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <div className="container mx-auto mb-16 px-4">
+      <div className='container mx-auto mb-16 px-4'>
         <main>{children}</main>
       </div>
     </>
@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
 }
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export default Layout

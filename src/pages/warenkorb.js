@@ -1,30 +1,30 @@
-import React from "react"
-import SEO from "../components/seo"
-import ProductList from "../components/productList"
-import CartSummary from "../components/cartSummary"
+import React from 'react'
+import Seo from '../components/seo'
+import ProductList from '../components/productList'
+import CartSummary from '../components/cartSummary'
 
-import { useCartCount, useCartItems } from "gatsby-theme-shopify-manager"
-import { graphql } from "gatsby"
+import { useCartCount, useCartItems } from 'gatsby-theme-shopify-manager'
+import { graphql } from 'gatsby'
 
-export default function Warenkorb({ data }) {
+export default function Warenkorb ({ data }) {
   // Hooks
   const cartItems = useCartItems()
   const cartCount = useCartCount()
   // Static Variant data for Images
   const {
-    allShopifyProductVariant: { edges: variants },
+    allShopifyProductVariant: { edges: variants }
   } = data
   // Debug
   return (
     <>
-      <SEO title="Warenkorb" />
-      <h3 className="text-3xl font-bold mb-4">Warenkorb</h3>
-      <div className="grid md:grid-cols-2 gap-8">
+      <Seo title='Warenkorb' />
+      <h3 className='text-3xl font-bold mb-4'>Warenkorb</h3>
+      <div className='grid md:grid-cols-2 gap-8'>
         <div>
-          <p className="mb-4 text-sm text-gray-800">
+          <p className='mb-4 text-sm text-gray-800'>
             {cartCount > 0
               ? `Artikel im Warenkorb: ${cartCount}`
-              : "Der Warenkorb ist leer."}
+              : 'Der Warenkorb ist leer.'}
           </p>
           {cartCount > 0 && (
             <ProductList products={cartItems} staticVariants={variants} />

@@ -1,4 +1,4 @@
-export function dotToComma(number) {
+export function dotToComma (number) {
   const str = number.toString()
-  return str.replace(".", ",")
+  return str.replace('.', ',')
 }
