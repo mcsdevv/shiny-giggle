@@ -6207,7 +6207,7 @@ gatsby-source-filesystem@^2.3.13, gatsby-source-filesystem@^2.3.18:
     valid-url "^1.0.9"
     xstate "^4.11.0"
 
-gatsby-source-shopify@^3.0.43, gatsby-source-shopify@^3.2.18:
+gatsby-source-shopify@^3.0.43:
   version "3.2.18"
   resolved "https://registry.yarnpkg.com/gatsby-source-shopify/-/gatsby-source-shopify-3.2.18.tgz#048b9870fa32060e4dc869f88771489def780e4e"
   integrity sha512-HsN/KCNgr0e+xVSbsjYFv1m7b56EJ2BTzkx2AdPJnNrUkxK19qyucCW0DCEt2WsPuSVgyGXhKiz4/B+AOLGE+g==
