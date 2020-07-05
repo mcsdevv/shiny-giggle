@@ -35,14 +35,16 @@ export default function ProductGrid ({ products }) {
     return str.substr(0, str.lastIndexOf(' ', 75)) + '...'
   }
   return (
-    <Grid templateColumns={['repeat(2, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)']} gap='8'>
+    <Grid
+      templateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)']} gap='8'
+    >
       {products.map((item, index) => {
         const desc = shorten(item.description)
         return (
           <Box key={item.id}>
             <Box as={Link} to={item.handle} mb='2' display='block'>
               <Img fluid={item.images[0].localFile.childImageSharp.fluid} />
-              <Heading size='sm'>{item.title}</Heading>
+              <Heading size='md' mb='2'>{item.title}</Heading>
               <Text fontSize='xs'>{desc}</Text>
             </Box>
             <SelectProduct

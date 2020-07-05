@@ -2,10 +2,12 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Seo from '../components/seo'
 import ProductGrid from '../components/productGrid'
+import { Heading } from '@chakra-ui/core'
 
 const IndexPage = ({ data }) => (
   <>
     <Seo title='Home' />
+    <Heading mb={8} fontWeight='black'>Produktübersicht</Heading>
     <ProductGrid products={data.allShopifyProduct.nodes} />
   </>
 )

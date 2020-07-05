@@ -4,9 +4,9 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: 'Shopify Store',
+    title: 'ACME Store',
     description:
-      'Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.',
+      'Boilerplate project for Shopify Storefront development with GatsbyJS.',
     author: '@derjohnschmidt'
   },
   plugins: [
@@ -24,10 +24,36 @@ module.exports = {
         isUsingColorMode: false
       }
     },
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Inter', 'Inter:medium', 'Inter:bold', 'Inter:black']
+        }
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: `${__dirname}/src/images`
+      }
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-postcss',
-    'gatsby-plugin-layout'
+    'gatsby-plugin-layout',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'acme-store',
+        short_name: 'acme',
+        start_url: '/',
+        background_color: '#fff',
+        theme_color: '#000',
+        display: 'minimal-ui',
+        icon: 'src/images/acme-icon.png'
+      }
+    }
   ]
 }
