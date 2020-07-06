@@ -36,7 +36,7 @@ export default function CartSummary () {
     <Box>
       <Box p={6} borderRadius={4} shadow='lg' borderColor='gray.50' borderWidth={1}>
         <Heading as='h3' fontSize='xl' mb={4}>
-          Bestellzusammenfassung
+          Bestellübersicht
         </Heading>
         <Stack>
           <Flex justifyContent='space-between'>
@@ -47,25 +47,25 @@ export default function CartSummary () {
             <Text color='gray.600'>Versandkosten:</Text>
             <Text>{shipping === 0 ? 'Kostenfrei' : shippingString + ' €'}</Text>
           </Flex>
+          <Link color='teal.500' fontSize='xs'>Hinweise zu den Versandkosten</Link>
           <Divider />
           <Flex justifyContent='space-between'>
             <Text fontWeight='bold'>Gesamt:</Text>
             <Text>{totalString} €</Text>
           </Flex>
-          <Text fontSize='xs' color='gray.600'>
-            <strong>Hinweis: </strong>Versandkosten und Steuern sind geschätzt
-            und werden während des Bestellvorgangs aktualisiert, basierend auf
-            deinen Rechnungs- und Versandinformationen.
+          <Text fontSize='xs'>Alle Preise inklusive MwSt.</Text>
+          <Text fontSize='xs' color='gray.500'>
+            Versandkosten und Steuern sind geschätzt und werden während des Bestellvorgangs aktualisiert, basierend auf deinen Rechnungs- und Versandinformationen.
           </Text>
           <Flex justifyContent='space-between' mt={2} alignItems='center'>
             <Button
               variantColor='red'
-              variant='ghost'
-              size='sm'
+              variant='link'
+              size='xs'
               isLoading={removing}
               onClick={handleRemove}
             >
-              Verwerfen
+              Warenkorb löschen
             </Button>
             <Link href={cart.webUrl} target='_blank'>
               <Button size='lg' variantColor='green' rightIcon='arrow-forward'>

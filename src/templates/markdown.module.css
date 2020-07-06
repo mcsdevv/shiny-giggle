@@ -2,8 +2,12 @@
   margin-bottom: 1rem;
 }
 
+.markdown p:last-of-type {
+  margin-bottom: 0;
+}
+
 .markdown a {
-  color: #319795
+  color: #2C7A7B
 }
 
 .markdown a:hover {

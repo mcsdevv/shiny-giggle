@@ -6,7 +6,7 @@ import Seo from '../components/seo'
 
 import { graphql } from 'gatsby'
 import { useClientUnsafe } from 'gatsby-theme-shopify-manager'
-import { Grid, Box, Heading, Divider } from '@chakra-ui/core'
+import { Grid, Box, Heading, Divider, Flex } from '@chakra-ui/core'
 import styles from './markdown.module.css'
 export default function ({ data }) {
   // Destructuring
@@ -37,12 +37,12 @@ export default function ({ data }) {
   return (
     <>
       <Seo title={title} />
-      <Grid templateColumns={[null, null, '1fr 2fr']} gap={8} rowGap={4} mb={8}>
-        <Box gridRow={[3, null, 1]}>
+      <Grid templateColumns={[null, '1fr 2fr', '1fr 3fr']} gap={4} mb={8}>
+        <Box gridRow={[3, 1]}>
           <Img fluid={images[0].localFile.childImageSharp.fluid} />
         </Box>
         <Box>
-          <Heading fontWeight='800' mb='8'>
+          <Heading fontWeight='800' mb={[4, 8]}>
             {title}
           </Heading>
           <Box
@@ -50,14 +50,16 @@ export default function ({ data }) {
             dangerouslySetInnerHTML={{ __html: descriptionHtml }}
           />
         </Box>
-        <Box gridColumn={[0, null, 2]}>
+        <Box gridColumn={[0, 2, 2]} alignItems='flex-start' flexDir={[null, 'row-reverse']} justifyContent={[null, 'flex-end']} w='100%' display={[null, 'flex']}>
           <SelectQuantity quantity={quantity} setQuantity={setQuantity} />
           <SelectProduct
             variants={variants}
             fetching={fetching}
             fetchedVariants={fetchedData}
-            mt={4}
-            maxW='xs'
+            mt={[4, 0]}
+            mr={[0, 4]}
+            maxW={['md', 'xs']}
+            minW='xs'
             quantity={quantity}
           />
         </Box>

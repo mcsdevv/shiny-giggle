@@ -87,7 +87,7 @@ export default function SelectProduct ({
           onClick={handleAdd}
           isDisabled={!available}
         >
-          {available ? 'Hinzufügen' : 'Ausverkauft'}
+          {available ? 'In den Warenkorb' : 'Ausverkauft'}
         </Button>
       </Flex>
     </Box>

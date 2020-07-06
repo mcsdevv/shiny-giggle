@@ -12,23 +12,52 @@ import {
   Heading,
   Text,
   IconButton,
-  Divider
+  Divider,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  FormControl,
+  FormLabel,
+  useToast
 } from '@chakra-ui/core'
 import { FiTrash2 } from 'react-icons/fi'
+import { dotToComma } from '../utils/dotToComma'
 
 function ListItem ({ data, staticVariants }) {
   // Hooks
   const updateQuantity = useUpdateItemQuantity()
   const removeItem = useRemoveItemFromCart()
+  const toast = useToast()
   // State
   const [quantity, setQuantity] = useState(data.quantity)
   const [removing, setRemoving] = useState(false)
   // Handlers
-  function handleRemove () {
+  const handleRemove = () => {
     setRemoving(true)
     removeItem(data.variant.id).then(() => {
       setRemoving(false)
     })
+  }
+  const handleChange = (n) => {
+    if (n > 50) {
+      updateQuantity(data.variant.id, 50)
+      setQuantity(50)
+      toast({
+        title: 'Sorry!',
+        description: 'Mehr als 50 Stück pro Artikel sind über unseren Online-Shop nicht möglich. Geschäftskunden können sich an info@acme.com wenden.',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true
+      })
+    } else if (n < 1) {
+      updateQuantity(data.variant.id, 1)
+      setQuantity(1)
+    } else {
+      updateQuantity(data.variant.id, n)
+      setQuantity(n)
+    }
   }
   // Get Static Variant Image
   const getStaticData = (() => {
@@ -41,36 +70,47 @@ function ListItem ({ data, staticVariants }) {
   return (
     <Flex justifyContent='space-between' alignItems='center'>
       <Flex alignItems='center'>
-        <Img
-          fixed={getStaticData.image}
-          alt={data.variant.title}
-          className='mr-2'
-        />
+        <Box display={['none', 'flex']}>
+          <Img
+            fixed={getStaticData.image}
+            alt={data.variant.title}
+          />
+        </Box>
         <Box>
-          <Heading as='h4' fontSize='base'>
+          <Heading as='h4' fontSize='sm'>
             {data.title}
           </Heading>
-          <Text fontSize='sm' color='gray.500'>
+          <Text fontSize='xs' color='gray.600'>
             <Text as='span'>{data.variant.title}</Text>
             <br />
             <Text as='span'>
-              <strong>Anzahl: </strong>
-              {data.quantity} Stück
+              Preis: {dotToComma(data.variant.price)} €
             </Text>
           </Text>
         </Box>
       </Flex>
-      <Box>
-        <IconButton
-          icon={FiTrash2}
-          title='Variante löschen'
-          variantColor='red'
-          size='sm'
-          onClick={handleRemove}
-          variant='ghost'
-          isLoading={removing}
-        />
-      </Box>
+      <FormControl>
+        <FormLabel htmlFor='number' fontSize='xs'>Anzahl:</FormLabel>
+        <Flex alignItems='center'>
+          <NumberInput size='sm' maxW={16} min={1} max={51} value={quantity} onChange={handleChange}>
+            <NumberInputField type='number' />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <IconButton
+            icon={FiTrash2}
+            title='Artikel entfernen'
+            variantColor='red'
+            size='sm'
+            ml={2}
+            onClick={handleRemove}
+            variant='ghost'
+            isLoading={removing}
+          />
+        </Flex>
+      </FormControl>
     </Flex>
   )
 }

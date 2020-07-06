@@ -26,17 +26,17 @@ export default function Warenkorb ({ data }) {
   )
   const CartEmpty = () => (
     <Box textAlign='center'>
-      <Text mb={4}>Dein Warenkorb ist leer. Hast du nicht gefunden wonach du gesucht hast?<br /><ChakraLink color='teal.500'>Schreib' uns was dir fehlt!</ChakraLink></Text>
+      <Text mb={4}>Dein Warenkorb ist leer. Hast du nicht gefunden wonach du gesucht hast?<br /><ChakraLink color='teal.600'>Schreib' uns was dir fehlt!</ChakraLink></Text>
       <Button as={Link} to='/' rightIcon='arrow-forward' variantColor='teal'>
       Produkte finden
       </Button>
-      <Image width={64} src={emptyCart} mx='auto' mt={8} />
+      <Image width={56} src={emptyCart} mx='auto' mt={12} />
     </Box>
   )
   return (
     <>
       <Seo title='Warenkorb' />
-      <Heading fontWeight='black' textAlign={empty ? 'center' : 'left'} my={8}>
+      <Heading fontWeight='black' textAlign={empty ? 'center' : 'left'} mb={[4, 8]}>
         Warenkorb
       </Heading>
       {!empty ? <CartOverview /> : <CartEmpty />}
@@ -53,7 +53,7 @@ export const query = graphql`
           image {
             localFile {
               childImageSharp {
-                fixed(width: 80) {
+                fixed(width: 100) {
                   ...GatsbyImageSharpFixed_withWebp_tracedSVG
                 }
               }

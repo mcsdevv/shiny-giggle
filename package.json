@@ -36,7 +36,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "dev": "gatsby develop",
+    "dev": "gatsby develop -H 0.0.0.0",
     "fix": "standard --fix",
     "start": "npm run develop",
     "serve": "gatsby serve",

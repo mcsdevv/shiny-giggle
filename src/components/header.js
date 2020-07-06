@@ -69,7 +69,7 @@ export default function Header () {
       zIndex='100'
       bg='white'
       py={4}
-      mb={8}
+      mb={[4, 8]}
       borderBottom='1px solid transparent'
       borderBottomColor={sticky && 'gray.100'}
       transition='border-color 200ms ease'
