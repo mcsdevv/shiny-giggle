@@ -18,27 +18,28 @@ export default function Warenkorb ({ data }) {
   const {
     allShopifyProductVariant: { edges: variants }
   } = data
-  // Debug
+  const CartOverview = () => (
+    <Grid templateColumns={[null, null, 'repeat(2, 1fr)']} gap={10} my={8}>
+      <ProductList products={cartItems} staticVariants={variants} />
+      <CartSummary />
+    </Grid>
+  )
+  const CartEmpty = () => (
+    <Box textAlign='center'>
+      <Text mb={4}>Dein Warenkorb ist leer. Hast du nicht gefunden wonach du gesucht hast?<br /><ChakraLink color='teal.500'>Schreib' uns was dir fehlt!</ChakraLink></Text>
+      <Button as={Link} to='/' rightIcon='arrow-forward' variantColor='teal'>
+      Produkte finden
+      </Button>
+      <Image width={64} src={emptyCart} mx='auto' mt={8} />
+    </Box>
+  )
   return (
     <>
       <Seo title='Warenkorb' />
       <Heading fontWeight='black' textAlign={empty ? 'center' : 'left'} my={8}>
         Warenkorb
       </Heading>
-      {!empty ? (
-        <Grid templateColumns={[null, null, 'repeat(2, 1fr)']} gap={10} my={8}>
-          <ProductList products={cartItems} staticVariants={variants} />
-          <CartSummary />
-        </Grid>
-      ) : (
-        <Box textAlign='center'>
-          <Text mb={4}>Dein Warenkorb ist leer. Hast du nicht gefunden wonach du gesucht hast?<br /><ChakraLink color='teal.500'>Schreib' uns was dir fehlt!</ChakraLink></Text>
-          <Button as={Link} to='/' rightIcon='arrow-forward' variantColor='teal'>
-            Produkte finden
-          </Button>
-          <Image width={64} src={emptyCart} mx='auto' mt={8} />
-        </Box>
-      )}
+      {!empty ? <CartOverview /> : <CartEmpty />}
     </>
   )
 }

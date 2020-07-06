@@ -44,10 +44,10 @@ export default function SelectProduct ({
     const goingToBeLimit = addedQuantity > 50
     if (isLimit || goingToBeLimit) {
       toast({
-        title: 'Maximale Menge erreicht',
-        description: 'Wenn du mehr Produkte bestellen möchtest, kontaktiere uns via Mail unter shop@acme.com!',
+        title: 'Sorry!',
+        description: 'Mehr als 50 Stück pro Artikel sind über unseren Online-Shop nicht möglich. Geschäftskunden können sich an info@acme.com wenden.',
         status: 'warning',
-        duration: 9000,
+        duration: 5000,
         isClosable: true
       })
       setAdding(false)
