@@ -17,6 +17,7 @@ export default function SelectProduct ({
   quantity = 1,
   fetching,
   fetchedVariants,
+  isSmall,
   ...rest
 }) {
   // Add hooks
@@ -63,7 +64,7 @@ export default function SelectProduct ({
     <Box maxW='sm' {...rest}>
       <FormControl>
         <FormLabel fontSize='xs'>Variante auswählen:</FormLabel>
-        <Select size='sm' value={selected} onChange={handleChange}>
+        <Select size={isSmall ? 'sm' : 'md'} value={selected} onChange={handleChange}>
           {variants.map((variant, index) => (
             <option key={variant.id} value={index}>
               {variant.title}

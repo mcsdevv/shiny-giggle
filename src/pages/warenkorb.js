@@ -25,7 +25,7 @@ export default function Warenkorb ({ data }) {
       <Heading fontWeight='black' textAlign={empty ? 'center' : 'left'} my={8}>
         Warenkorb
       </Heading>
-      {cartCount > 0 ? (
+      {!empty ? (
         <Grid templateColumns={[null, null, 'repeat(2, 1fr)']} gap={10} my={8}>
           <ProductList products={cartItems} staticVariants={variants} />
           <CartSummary />

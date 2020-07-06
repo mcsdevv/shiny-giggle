@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { IconButton, Button, Box } from '@chakra-ui/core'
+import { Button, Box } from '@chakra-ui/core'
 import { FiShoppingBag } from 'react-icons/fi'
 import { Link } from 'gatsby'
 import { useCartCount } from 'gatsby-theme-shopify-manager'
@@ -21,18 +21,18 @@ export default function CartButton () {
 
   return (
     <Box position='relative'>
-      <IconButton
+      {/* <IconButton
         as={Link}
         title='Warenkorb'
         to='/warenkorb'
         display={['flex', 'none']}
         icon={FiShoppingBag}
         variantColor={buttonColor}
-      />
+      /> */}
       <Button
         as={Link}
         to='/warenkorb'
-        display={['none', 'flex']}
+        display='flex'
         leftIcon={FiShoppingBag}
         variant='outline'
         variantColor={buttonColor}

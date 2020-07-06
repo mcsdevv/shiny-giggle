@@ -6,8 +6,8 @@ import Seo from '../components/seo'
 
 import { graphql } from 'gatsby'
 import { useClientUnsafe } from 'gatsby-theme-shopify-manager'
-import { Grid, Box, Heading } from '@chakra-ui/core'
-import markdown from './markdown.module.css'
+import { Grid, Box, Heading, Divider } from '@chakra-ui/core'
+import styles from './markdown.module.css'
 export default function ({ data }) {
   // Destructuring
   const {
@@ -33,11 +33,12 @@ export default function ({ data }) {
       setFetching(false)
     })
   }, [])
+  const moreImages = images.slice(1)
   return (
     <>
       <Seo title={title} />
-      <Grid templateColumns={[null, '1fr 2fr']}>
-        <Box>
+      <Grid templateColumns={[null, null, '1fr 2fr']} gap={8} rowGap={4} mb={8}>
+        <Box gridRow={[3, null, 1]}>
           <Img fluid={images[0].localFile.childImageSharp.fluid} />
         </Box>
         <Box>
@@ -45,9 +46,11 @@ export default function ({ data }) {
             {title}
           </Heading>
           <Box
-            className={markdown.markdown}
+            className={styles.markdown}
             dangerouslySetInnerHTML={{ __html: descriptionHtml }}
           />
+        </Box>
+        <Box gridColumn={[0, null, 2]}>
           <SelectQuantity quantity={quantity} setQuantity={setQuantity} />
           <SelectProduct
             variants={variants}
@@ -58,6 +61,13 @@ export default function ({ data }) {
             quantity={quantity}
           />
         </Box>
+      </Grid>
+      <Divider />
+      <Heading mt={8} fontWeight='black'>Bilder</Heading>
+      <Grid templateColumns={[null, 'repeat(2, 1fr)']}>
+        {moreImages.map((image) => (
+          <Img fluid={image.localFile.childImageSharp.fluid} key={image.id} />
+        ))}
       </Grid>
     </>
   )
@@ -81,6 +91,7 @@ export const query = graphql`
         }
       }
       images {
+        id
         localFile {
           childImageSharp {
             fluid(maxWidth: 600) {

@@ -51,7 +51,12 @@ function ListItem ({ data, staticVariants }) {
             {data.title}
           </Heading>
           <Text fontSize='sm' color='gray.500'>
-            {data.variant.title}
+            <Text as='span'>{data.variant.title}</Text>
+            <br />
+            <Text as='span'>
+              <strong>Anzahl: </strong>
+              {data.quantity} Stück
+            </Text>
           </Text>
         </Box>
       </Flex>

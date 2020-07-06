@@ -51,6 +51,7 @@ export default function ProductGrid ({ products }) {
               variants={item.variants}
               fetching={fetching}
               fetchedVariants={data[index]}
+              isSmall
             />
           </Box>
         )

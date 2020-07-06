@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'gatsby'
-
-import { Logo } from './icons'
-import CartButton from './cartButton'
-import { Box, Grid, Flex, Button } from '@chakra-ui/core'
 import { useLocation } from '@reach/router'
+
+import CartButton from './cartButton'
+
+import { Link } from 'gatsby'
+import { Logo } from './icons'
+import { Box, Grid, Flex, Button } from '@chakra-ui/core'
+
 export default function Header () {
   const [sticky, setSticky] = useState(false)
   const location = useLocation()
@@ -48,9 +50,9 @@ export default function Header () {
         as={Link}
         to={item.path}
         variant='link'
-        fontWeight='medium'
+        fontWeight='normal'
         key={item.name}
-        mr={6}
+        mr={4}
         size='sm'
         isActive={location.pathname === item.path}
         _last={{ mr: 0 }}
@@ -86,7 +88,7 @@ export default function Header () {
               <Logo width={80} />
             </Box>
           </Flex>
-          <Flex justifyContent='end' alignItems='center'>
+          <Flex justifyContent='flex-end' alignItems='center'>
             <CartButton />
           </Flex>
         </Grid>

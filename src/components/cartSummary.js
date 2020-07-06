@@ -34,7 +34,7 @@ export default function CartSummary () {
   // Render
   return (
     <Box>
-      <Box p={6} borderRadius={4} shadow='lg'>
+      <Box p={6} borderRadius={4} shadow='lg' borderColor='gray.50' borderWidth={1}>
         <Heading as='h3' fontSize='xl' mb={4}>
           Bestellzusammenfassung
         </Heading>
