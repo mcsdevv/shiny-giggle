@@ -5,7 +5,15 @@ import CartSummary from '../components/cartSummary'
 
 import { useCartCount, useCartItems } from 'gatsby-theme-shopify-manager'
 import { graphql, Link } from 'gatsby'
-import { Heading, Grid, Box, Text, Button, Image, Link as ChakraLink } from '@chakra-ui/core'
+import {
+  Heading,
+  Grid,
+  Box,
+  Text,
+  Button,
+  Image,
+  Link as ChakraLink
+} from '@chakra-ui/core'
 
 import emptyCart from '../images/shopping_cart.svg'
 
@@ -26,9 +34,13 @@ export default function Warenkorb ({ data }) {
   )
   const CartEmpty = () => (
     <Box textAlign='center'>
-      <Text mb={4}>Dein Warenkorb ist leer. Hast du nicht gefunden wonach du gesucht hast?<br /><ChakraLink color='teal.600'>Schreib' uns was dir fehlt!</ChakraLink></Text>
+      <Text mb={4}>
+        Dein Warenkorb ist leer. Hast du nicht gefunden wonach du gesucht hast?
+        <br />
+        <ChakraLink color='teal.600'>Schreib' uns was dir fehlt!</ChakraLink>
+      </Text>
       <Button as={Link} to='/' rightIcon='arrow-forward' variantColor='teal'>
-      Produkte finden
+        Produkte finden
       </Button>
       <Image width={56} src={emptyCart} mx='auto' mt={12} />
     </Box>
@@ -36,7 +48,11 @@ export default function Warenkorb ({ data }) {
   return (
     <>
       <Seo title='Warenkorb' />
-      <Heading fontWeight='black' textAlign={empty ? 'center' : 'left'} mb={[4, 8]}>
+      <Heading
+        fontWeight='black'
+        textAlign={empty ? 'center' : 'left'}
+        mb={[4, 8]}
+      >
         Warenkorb
       </Heading>
       {!empty ? <CartOverview /> : <CartEmpty />}

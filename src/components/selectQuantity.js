@@ -1,8 +1,13 @@
 import React from 'react'
 import { IconButton, Flex, FormLabel, Box, Input } from '@chakra-ui/core'
 
-export default function SelectQuantity ({ quantity, setQuantity, hideLabel, isSmall }) {
-  const handleInput = (e) => {
+export default function SelectQuantity ({
+  quantity,
+  setQuantity,
+  hideLabel,
+  isSmall
+}) {
+  const handleInput = e => {
     if (e.target.value > 50) {
       setQuantity(50)
     } else if (e.target.value <= 0) {
@@ -11,7 +16,7 @@ export default function SelectQuantity ({ quantity, setQuantity, hideLabel, isSm
       setQuantity(parseInt(e.target.value))
     }
   }
-  const handleClick = (add) => {
+  const handleClick = add => {
     const higher = quantity + 1
     const lower = quantity - 1
     if (quantity > 0) {
@@ -26,16 +31,37 @@ export default function SelectQuantity ({ quantity, setQuantity, hideLabel, isSm
     <Box>
       {!hideLabel && (
         <FormLabel fontSize='xs' display='block'>
-        Anzahl wählen:
+          Anzahl wählen:
         </FormLabel>
       )}
       <Flex>
         {/* Plus */}
-        <IconButton size={isSmall && 'sm'} type='dec' icon='minus' onClick={() => handleClick(false)} />
+        <IconButton
+          size={isSmall && 'sm'}
+          type='dec'
+          icon='minus'
+          onClick={() => handleClick(false)}
+        />
         {/* Show Quantity */}
-        <Input size={isSmall && 'sm'} type='number' py={1} px={2} mx={2} fontWeight='medium' fontSize='lg' w='10' textAlign='center' value={quantity} onChange={handleInput} />
+        <Input
+          size={isSmall && 'sm'}
+          type='number'
+          py={1}
+          px={2}
+          mx={2}
+          fontWeight='medium'
+          fontSize='lg'
+          w='10'
+          textAlign='center'
+          value={quantity}
+          onChange={handleInput}
+        />
         {/* Minus */}
-        <IconButton size={isSmall && 'sm'} icon='add' onClick={() => handleClick(true)} />
+        <IconButton
+          size={isSmall && 'sm'}
+          icon='add'
+          onClick={() => handleClick(true)}
+        />
       </Flex>
     </Box>
   )

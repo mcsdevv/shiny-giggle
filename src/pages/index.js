@@ -7,7 +7,9 @@ import { Heading } from '@chakra-ui/core'
 const IndexPage = ({ data }) => (
   <>
     <Seo title='Home' />
-    <Heading mb={[4, 8]} fontWeight='black'>Produktübersicht</Heading>
+    <Heading mb={[4, 8]} fontWeight='black'>
+      Produktübersicht
+    </Heading>
     <ProductGrid products={data.allShopifyProduct.nodes} />
   </>
 )

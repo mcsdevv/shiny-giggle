@@ -40,13 +40,14 @@ function ListItem ({ data, staticVariants }) {
       setRemoving(false)
     })
   }
-  const handleChange = (n) => {
+  const handleChange = n => {
     if (n > 50) {
       updateQuantity(data.variant.id, 50)
       setQuantity(50)
       toast({
         title: 'Sorry!',
-        description: 'Mehr als 50 Stück pro Artikel sind über unseren Online-Shop nicht möglich. Geschäftskunden können sich an info@acme.com wenden.',
+        description:
+          'Mehr als 50 Stück pro Artikel sind über unseren Online-Shop nicht möglich. Geschäftskunden können sich an info@acme.com wenden.',
         status: 'warning',
         duration: 5000,
         isClosable: true
@@ -61,7 +62,7 @@ function ListItem ({ data, staticVariants }) {
   }
   // Get Static Variant Image
   const getStaticData = (() => {
-    const v = staticVariants.find((v) => v.node.shopifyId === data.variant.id)
+    const v = staticVariants.find(v => v.node.shopifyId === data.variant.id)
     return {
       handle: v.node.handle,
       image: v.node.image.localFile.childImageSharp.fixed
@@ -71,10 +72,7 @@ function ListItem ({ data, staticVariants }) {
     <Flex justifyContent='space-between' alignItems='center'>
       <Flex alignItems='center'>
         <Box display={['none', 'flex']}>
-          <Img
-            fixed={getStaticData.image}
-            alt={data.variant.title}
-          />
+          <Img fixed={getStaticData.image} alt={data.variant.title} />
         </Box>
         <Box>
           <Heading as='h4' fontSize='sm'>
@@ -83,16 +81,23 @@ function ListItem ({ data, staticVariants }) {
           <Text fontSize='xs' color='gray.600'>
             <Text as='span'>{data.variant.title}</Text>
             <br />
-            <Text as='span'>
-              Preis: {dotToComma(data.variant.price)} €
-            </Text>
+            <Text as='span'>Preis: {dotToComma(data.variant.price)} €</Text>
           </Text>
         </Box>
       </Flex>
       <FormControl>
-        <FormLabel htmlFor='number' fontSize='xs'>Anzahl:</FormLabel>
+        <FormLabel htmlFor='number' fontSize='xs'>
+          Anzahl:
+        </FormLabel>
         <Flex alignItems='center'>
-          <NumberInput size='sm' maxW={16} min={1} max={51} value={quantity} onChange={handleChange}>
+          <NumberInput
+            size='sm'
+            maxW={16}
+            min={1}
+            max={51}
+            value={quantity}
+            onChange={handleChange}
+          >
             <NumberInputField type='number' />
             <NumberInputStepper>
               <NumberIncrementStepper />

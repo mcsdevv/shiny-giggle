@@ -25,14 +25,6 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-web-font-loader',
-      options: {
-        google: {
-          families: ['Inter', 'Inter:medium', 'Inter:bold', 'Inter:black']
-        }
-      }
-    },
-    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',

@@ -31,13 +31,13 @@ export default function SelectProduct ({
     ? variants[selected].availableForSale
     : fetchedVariants[selected].available
   // Handle events
-  const handleChange = (e) => {
+  const handleChange = e => {
     setSelected(e.target.value)
   }
   const handleAdd = () => {
     setAdding(true)
     const isExisting = cartItems.find(
-      (item) => item.variant.id === variants[selected].shopifyId
+      item => item.variant.id === variants[selected].shopifyId
     )
     const isLimit = isExisting?.quantity >= 50
     const addedQuantity = quantity + isExisting?.quantity
@@ -45,7 +45,8 @@ export default function SelectProduct ({
     if (isLimit || goingToBeLimit) {
       toast({
         title: 'Sorry!',
-        description: 'Mehr als 50 Stück pro Artikel sind über unseren Online-Shop nicht möglich. Geschäftskunden können sich an info@acme.com wenden.',
+        description:
+          'Mehr als 50 Stück pro Artikel sind über unseren Online-Shop nicht möglich. Geschäftskunden können sich an info@acme.com wenden.',
         status: 'warning',
         duration: 5000,
         isClosable: true
@@ -56,7 +57,7 @@ export default function SelectProduct ({
         .then(() => {
           setAdding(false)
         })
-        .catch((e) => console.log(e))
+        .catch(e => console.log(e))
     }
   }
   const price = dotToComma(variants[selected].priceV2.amount)
@@ -64,7 +65,11 @@ export default function SelectProduct ({
     <Box maxW='sm' {...rest}>
       <FormControl>
         <FormLabel fontSize='xs'>Variante auswählen:</FormLabel>
-        <Select size={isSmall ? 'sm' : 'md'} value={selected} onChange={handleChange}>
+        <Select
+          size={isSmall ? 'sm' : 'md'}
+          value={selected}
+          onChange={handleChange}
+        >
           {variants.map((variant, index) => (
             <option key={variant.id} value={index}>
               {variant.title}

@@ -23,8 +23,8 @@ export default function ({ data }) {
   const [fetchedData, setFetched] = useState([])
   const [quantity, setQuantity] = useState(1)
   useEffect(() => {
-    shopify.product.fetch(shopifyId).then((product) => {
-      const d = product.variants.map((variant) => {
+    shopify.product.fetch(shopifyId).then(product => {
+      const d = product.variants.map(variant => {
         return {
           available: variant.available
         }
@@ -50,7 +50,14 @@ export default function ({ data }) {
             dangerouslySetInnerHTML={{ __html: descriptionHtml }}
           />
         </Box>
-        <Box gridColumn={[0, 2, 2]} alignItems='flex-start' flexDir={[null, 'row-reverse']} justifyContent={[null, 'flex-end']} w='100%' display={[null, 'flex']}>
+        <Box
+          gridColumn={[0, 2, 2]}
+          alignItems='flex-start'
+          flexDir={[null, 'row-reverse']}
+          justifyContent={[null, 'flex-end']}
+          w='100%'
+          display={[null, 'flex']}
+        >
           <SelectQuantity quantity={quantity} setQuantity={setQuantity} />
           <SelectProduct
             variants={variants}
@@ -65,9 +72,11 @@ export default function ({ data }) {
         </Box>
       </Grid>
       <Divider />
-      <Heading mt={8} fontWeight='black'>Bilder</Heading>
+      <Heading mt={8} fontWeight='black'>
+        Bilder
+      </Heading>
       <Grid templateColumns={[null, 'repeat(2, 1fr)']}>
-        {moreImages.map((image) => (
+        {moreImages.map(image => (
           <Img fluid={image.localFile.childImageSharp.fluid} key={image.id} />
         ))}
       </Grid>

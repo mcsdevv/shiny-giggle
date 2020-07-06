@@ -18,17 +18,8 @@ export default function CartButton () {
   }, [getCount, count])
   const buttonColor =
     location.pathname === '/warenkorb' ? 'gray' : notEmpty ? 'green' : 'gray'
-
   return (
     <Box position='relative'>
-      {/* <IconButton
-        as={Link}
-        title='Warenkorb'
-        to='/warenkorb'
-        display={['flex', 'none']}
-        icon={FiShoppingBag}
-        variantColor={buttonColor}
-      /> */}
       <Button
         as={Link}
         to='/warenkorb'
@@ -41,16 +32,20 @@ export default function CartButton () {
       </Button>
       <Box
         position='absolute'
-        top='0' right='0'
-        mt={-2} mr={-2}
+        top='0'
+        right='0'
+        mt={-2}
+        mr={-2}
         fontSize='xs'
         rounded='full'
         bg='red.500'
         color='white'
-        minW={5} h={5}
+        minW={5}
+        h={5}
         display='flex'
         alignItems='center'
-        justifyContent='center' px={1}
+        justifyContent='center'
+        px={1}
         opacity={notEmpty ? 1 : 0}
         transition='opacity 100ms ease'
       >

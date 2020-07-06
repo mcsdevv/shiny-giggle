@@ -20,7 +20,7 @@ export default function Header () {
   }
   useEffect(() => {
     scrollFunction()
-    window.onscroll = (e) => {
+    window.onscroll = e => {
       scrollFunction()
     }
   }, [])
@@ -45,7 +45,7 @@ export default function Header () {
   ]
 
   const Nav = () =>
-    menuItems.map((item) => (
+    menuItems.map(item => (
       <Button
         as={Link}
         to={item.path}
@@ -76,11 +76,7 @@ export default function Header () {
     >
       <Box mx='auto' maxWidth='1024px' px={4}>
         <Grid templateColumns={['repeat(2, 1fr)', null, 'repeat(3, 1fr)']}>
-          <Flex
-            as='nav'
-            alignItems='center'
-            display={['none', null, 'flex']}
-          >
+          <Flex as='nav' alignItems='center' display={['none', null, 'flex']}>
             <Nav />
           </Flex>
           <Flex justifyContent={[null, null, 'center']} alignItems='center'>

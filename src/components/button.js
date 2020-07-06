@@ -16,9 +16,8 @@ export default function Button (props) {
     !props.loading && props.variant ? variants[props.variant] : variants.loading
   const btnClasses = `relative px-4 py-2 font-medium transition-colors duration-200 focus:outline-none disabled:cursor-default flex justify-center items-center ${
     props.className
-  } ${props.inlineForm ? 'rounded-r' : 'rounded'} ${
-    props.disabled && 'cursor-default'
-  } ${currentVariant}`
+  } ${props.inlineForm ? 'rounded-r' : 'rounded'} ${props.disabled &&
+    'cursor-default'} ${currentVariant}`
   return (
     <button
       onClick={props.onClick}
