@@ -1,19 +1,19 @@
 import React from 'react'
 import {
-  IconButton,
-  Flex,
-  FormLabel,
   Box,
-  Input,
+  Flex,
   FormControl,
-  FormHelperText
+  FormHelperText,
+  FormLabel,
+  IconButton,
+  Input
 } from '@chakra-ui/core'
 
 export default function SelectQuantity ({
-  quantity,
-  setQuantity,
   hideLabel,
-  isSmall
+  isSmall,
+  quantity,
+  setQuantity
 }) {
   const handleInput = e => {
     if (e.target.value > 50) {
@@ -40,39 +40,39 @@ export default function SelectQuantity ({
       <FormControl>
         {!hideLabel && (
           <FormLabel fontSize='xs' display='block' htmlFor='select-quantity'>
-            Anzahl wählen:
+            Wie viele?
           </FormLabel>
         )}
         <Flex>
           {/* Plus */}
           <IconButton
-            size={isSmall && 'sm'}
-            type='dec'
             icon='minus'
             onClick={() => handleClick(false)}
+            size={isSmall && 'sm'}
+            type='dec'
           />
           {/* Show Quantity */}
           <Input
-            name='select-quantity'
-            size={isSmall && 'sm'}
-            type='number'
-            py={1}
-            px={2}
-            mx={2}
-            fontWeight='medium'
             fontSize='lg'
-            w='10'
-            textAlign='center'
-            value={quantity}
-            onChange={handleInput}
+            fontWeight='medium'
             max={50}
             min={1}
+            mx={2}
+            name='select-quantity'
+            onChange={handleInput}
+            px={2}
+            py={1}
+            size={isSmall && 'sm'}
+            textAlign='center'
+            type='number'
+            value={quantity}
+            w='10'
           />
           {/* Minus */}
           <IconButton
-            size={isSmall && 'sm'}
             icon='add'
             onClick={() => handleClick(true)}
+            size={isSmall && 'sm'}
           />
         </Flex>
         <FormHelperText fontSize='xs'>max. 50 Stück</FormHelperText>

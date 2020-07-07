@@ -67,7 +67,7 @@ function ListItem ({ data, staticVariants }) {
         } else {
           updateQuantity(data.variant.id, n).then(setLoading(false))
         }
-      }, 2000)
+      }, 1500)
     )
   }
   // Get Static Variant Image
@@ -105,7 +105,7 @@ function ListItem ({ data, staticVariants }) {
             size='sm'
             maxW={16}
             min={1}
-            max={51}
+            max={50}
             value={quantity}
             onChange={handleChange}
           >

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Img from 'gatsby-image'
-import SelectProduct from '../components/selectProduct'
 import SelectQuantity from '../components/selectQuantity'
+import RadioProduct from '../components/radioProduct'
+
 import Seo from '../components/seo'
 
 import { graphql } from 'gatsby'
@@ -12,10 +13,10 @@ import styles from './markdown.module.css'
 export default function ({ data }) {
   // Destructuring
   const {
-    title,
-    images,
     descriptionHtml,
+    images,
     shopifyId,
+    title,
     variants
   } = data.shopifyProduct
   // Hooks and State
@@ -58,7 +59,7 @@ export default function ({ data }) {
             mt={[4, 8]}
           >
             <SelectQuantity quantity={quantity} setQuantity={setQuantity} />
-            <SelectProduct
+            {/* <SelectProduct
               variants={variants}
               fetching={fetching}
               fetchedVariants={fetchedData}
@@ -66,6 +67,14 @@ export default function ({ data }) {
               mr={[0, 4]}
               maxW={['md', 'xs']}
               minW={['2xs', null, 'xs']}
+              quantity={quantity}
+            /> */}
+            <RadioProduct
+              mt={[4, 0]}
+              mr={[0, 4]}
+              variants={variants}
+              isFetching={fetching}
+              fetchedVariants={fetchedData}
               quantity={quantity}
             />
           </Box>

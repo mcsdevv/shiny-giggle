@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Img from 'gatsby-image'
-import SelectProduct from './selectProduct'
-import { Grid, Heading, Text, Box } from '@chakra-ui/core'
+import { Grid, Heading, Box } from '@chakra-ui/core'
 
 import { Link } from 'gatsby'
 import { useClientUnsafe } from 'gatsby-theme-shopify-manager'
+import RadioProduct from './radioProduct'
 
 export default function ProductGrid ({ products }) {
+  // Hooks
   const shopify = useClientUnsafe()
+  // State
   const [data, setData] = useState([])
   const [fetching, setFetching] = useState(true)
   const productIds = products.map(p => p.shopifyId)
@@ -31,30 +33,35 @@ export default function ProductGrid ({ products }) {
         console.log(error)
       })
   }, [])
-  const shorten = str => {
-    return str.substr(0, str.lastIndexOf(' ', 75)) + '...'
-  }
   return (
     <Grid
       templateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)']}
       gap='8'
     >
       {products.map((item, index) => {
-        const desc = shorten(item.description)
         return (
           <Box key={item.id}>
-            <Box as={Link} to={item.handle} mb='2' display='block'>
+            <Box
+              as={Link}
+              display='block'
+              mb={1}
+              textAlign='center'
+              to={item.handle}
+            >
               <Img fluid={item.images[0].localFile.childImageSharp.fluid} />
-              <Heading size='sm' mb='2' fontWeight='semibold'>
+              <Heading size='base' fontWeight='bold' mb={2}>
                 {item.title}
               </Heading>
-              <Text fontSize='xs'>{desc}</Text>
             </Box>
-            <SelectProduct
-              variants={item.variants}
-              fetching={fetching}
+            <RadioProduct
+              alignItems='center'
+              display='flex'
               fetchedVariants={data[index]}
-              isSmall
+              flexDirection='column'
+              isFetching={fetching}
+              isInline
+              noLabel
+              variants={item.variants}
             />
           </Box>
         )
