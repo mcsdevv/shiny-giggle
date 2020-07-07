@@ -10,7 +10,7 @@ export default function Button (props) {
     error:
       'bg-red-200 text-red-900 hover:bg-red-300 active:bg-red-400 border-red-400',
     loading: 'bg-gray-300 text-gray-600',
-    muted: 'bg-white text-gray-500'
+    muted: 'bg-white text-gray-600'
   }
   const currentVariant =
     !props.loading && props.variant ? variants[props.variant] : variants.loading

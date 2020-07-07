@@ -39,7 +39,7 @@ export default function SelectQuantity ({
     <Box>
       <FormControl>
         {!hideLabel && (
-          <FormLabel fontSize='xs' display='block'>
+          <FormLabel fontSize='xs' display='block' htmlFor='select-quantity'>
             Anzahl wählen:
           </FormLabel>
         )}
@@ -53,6 +53,7 @@ export default function SelectQuantity ({
           />
           {/* Show Quantity */}
           <Input
+            name='select-quantity'
             size={isSmall && 'sm'}
             type='number'
             py={1}

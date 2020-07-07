@@ -109,7 +109,7 @@ function ListItem ({ data, staticVariants }) {
             value={quantity}
             onChange={handleChange}
           >
-            <NumberInputField type='number' />
+            <NumberInputField type='number' name='number' />
             <NumberInputStepper>
               <NumberIncrementStepper />
               <NumberDecrementStepper />
@@ -135,7 +135,7 @@ export default function ProductList ({ products, staticVariants }) {
   return (
     <Box>
       <Heading as='h3' fontSize='xl' mb={4}>
-        Übersicht
+        Artikel
       </Heading>
       <Stack>
         {products.map((item, index) => (

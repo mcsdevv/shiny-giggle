@@ -20,6 +20,7 @@ import emptyCart from '../images/shopping_cart.svg'
 export default function Warenkorb ({ data }) {
   // Hooks
   const cartItems = useCartItems()
+  const empty = cartItems.length === 0
   // Static Variant data for Images
   const {
     allShopifyProductVariant: { edges: variants }
@@ -44,14 +45,18 @@ export default function Warenkorb ({ data }) {
     </Box>
   )
   const ShowCart = () => {
-    if (cartItems.length === 0) {
+    if (empty) {
       return <CartEmpty />
     } else return <CartOverview />
   }
   return (
     <>
       <Seo title='Warenkorb' />
-      <Heading fontWeight='black' mb={[4, 8]}>
+      <Heading
+        fontWeight='black'
+        mb={[4, 8]}
+        textAlign={empty ? 'center' : 'left'}
+      >
         Warenkorb
       </Heading>
       <ShowCart />

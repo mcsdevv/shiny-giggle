@@ -56,14 +56,14 @@ export default function CartSummary () {
             </Link>
           </Box>
           <Divider />
-          <Stack spacing={2}>
+          <Stack spacing={4}>
             <Box>
               <Flex justifyContent='space-between'>
                 <Text fontWeight='bold'>Gesamt:</Text>
                 <Text>{totalString} €</Text>
               </Flex>
               <Text fontSize='xs'>Alle Preise inklusive MwSt.</Text>
-              <Text fontSize='xs' color='gray.500' mt={2}>
+              <Text fontSize='xs' color='gray.600' mt={2}>
                 Versandkosten und Steuern sind geschätzt und werden während des
                 Bestellvorgangs aktualisiert, basierend auf deinen Rechnungs-
                 und Versandinformationen.
@@ -82,8 +82,7 @@ export default function CartSummary () {
             <Flex alignItems='flex-start' color='green.600'>
               <FiLock />
               <Text fontSize='xs' ml={2}>
-                Bezahle sicher und bequem über unser verschlüsseltes
-                Kassensystem.
+                Alle Zahlungen sind verschlüsselt.
               </Text>
             </Flex>
           </Stack>

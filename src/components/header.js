@@ -79,7 +79,7 @@ export default function Header () {
             <Nav />
           </Flex>
           <Flex justifyContent={[null, null, 'center']} alignItems='center'>
-            <Box as={Link} to='/'>
+            <Box as={Link} to='/' title='Übersicht'>
               <Logo width={80} />
             </Box>
           </Flex>

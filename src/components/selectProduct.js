@@ -64,8 +64,11 @@ export default function SelectProduct ({
   return (
     <Box maxW='sm' {...rest}>
       <FormControl>
-        <FormLabel fontSize='xs'>Variante auswählen:</FormLabel>
+        <FormLabel fontSize='xs' htmlFor='select-variant'>
+          Variante auswählen:
+        </FormLabel>
         <Select
+          name='select-variant'
           size={isSmall ? 'sm' : 'md'}
           value={selected}
           onChange={handleChange}
