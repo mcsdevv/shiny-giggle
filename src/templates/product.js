@@ -6,8 +6,9 @@ import Seo from '../components/seo'
 
 import { graphql } from 'gatsby'
 import { useClientUnsafe } from 'gatsby-theme-shopify-manager'
-import { Grid, Box, Heading, Divider, Flex } from '@chakra-ui/core'
+import { Grid, Box, Heading, Divider } from '@chakra-ui/core'
 import styles from './markdown.module.css'
+
 export default function ({ data }) {
   // Destructuring
   const {
@@ -37,43 +38,42 @@ export default function ({ data }) {
   return (
     <>
       <Seo title={title} />
-      <Grid templateColumns={[null, '1fr 2fr', '1fr 3fr']} gap={4} mb={8}>
-        <Box gridRow={[3, 1]}>
+      <Grid templateColumns={[null, null, '1fr 2fr', null]} gap={4} mb={8}>
+        <Box gridRow={[3, 3, 1]}>
           <Img fluid={images[0].localFile.childImageSharp.fluid} />
         </Box>
         <Box>
-          <Heading fontWeight='800' mb={[4, 8]}>
+          <Heading fontWeight='black' mb={[4, 8]}>
             {title}
           </Heading>
           <Box
             className={styles.markdown}
             dangerouslySetInnerHTML={{ __html: descriptionHtml }}
           />
-        </Box>
-        <Box
-          gridColumn={[0, 2, 2]}
-          alignItems='flex-start'
-          flexDir={[null, 'row-reverse']}
-          justifyContent={[null, 'flex-end']}
-          w='100%'
-          display={[null, 'flex']}
-        >
-          <SelectQuantity quantity={quantity} setQuantity={setQuantity} />
-          <SelectProduct
-            variants={variants}
-            fetching={fetching}
-            fetchedVariants={fetchedData}
-            mt={[4, 0]}
-            mr={[0, 4]}
-            maxW={['md', 'xs']}
-            minW='xs'
-            quantity={quantity}
-          />
+          <Box
+            alignItems='flex-start'
+            flexDir={[null, 'row-reverse']}
+            justifyContent={[null, 'flex-end']}
+            display={[null, 'flex']}
+            mt={[4, 8]}
+          >
+            <SelectQuantity quantity={quantity} setQuantity={setQuantity} />
+            <SelectProduct
+              variants={variants}
+              fetching={fetching}
+              fetchedVariants={fetchedData}
+              mt={[4, 0]}
+              mr={[0, 4]}
+              maxW={['md', 'xs']}
+              minW={['2xs', null, 'xs']}
+              quantity={quantity}
+            />
+          </Box>
         </Box>
       </Grid>
       <Divider />
-      <Heading mt={8} fontWeight='black'>
-        Bilder
+      <Heading mt={8} fontWeight='black' fontSize='2xl'>
+        Mehr Bilder
       </Heading>
       <Grid templateColumns={[null, 'repeat(2, 1fr)']}>
         {moreImages.map(image => (

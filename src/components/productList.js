@@ -20,19 +20,23 @@ import {
   NumberDecrementStepper,
   FormControl,
   FormLabel,
-  useToast
+  useToast,
+  AspectRatioBox,
+  Spinner
 } from '@chakra-ui/core'
+
 import { FiTrash2 } from 'react-icons/fi'
 import { dotToComma } from '../utils/dotToComma'
 
 function ListItem ({ data, staticVariants }) {
-  // Hooks
+  // Hooks & State
   const updateQuantity = useUpdateItemQuantity()
   const removeItem = useRemoveItemFromCart()
   const toast = useToast()
-  // State
   const [quantity, setQuantity] = useState(data.quantity)
   const [removing, setRemoving] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [wait, setWait] = useState(null)
   // Handlers
   const handleRemove = () => {
     setRemoving(true)
@@ -41,24 +45,30 @@ function ListItem ({ data, staticVariants }) {
     })
   }
   const handleChange = n => {
-    if (n > 50) {
-      updateQuantity(data.variant.id, 50)
-      setQuantity(50)
-      toast({
-        title: 'Sorry!',
-        description:
-          'Mehr als 50 Stück pro Artikel sind über unseren Online-Shop nicht möglich. Geschäftskunden können sich an info@acme.com wenden.',
-        status: 'warning',
-        duration: 5000,
-        isClosable: true
-      })
-    } else if (n < 1) {
-      updateQuantity(data.variant.id, 1)
-      setQuantity(1)
-    } else {
-      updateQuantity(data.variant.id, n)
-      setQuantity(n)
-    }
+    clearTimeout(wait)
+    setLoading(true)
+    setQuantity(n)
+    setWait(
+      setTimeout(() => {
+        if (n > 50) {
+          updateQuantity(data.variant.id, 50).then(setLoading(false))
+          setQuantity(50)
+          toast({
+            title: 'Maximale Bestellmenge erreicht',
+            description:
+              'Die Bestellung von mehr als 50 Stück pro Artikel ist über unseren Onlineshop nicht möglich.',
+            status: 'warning',
+            duration: 5000,
+            isClosable: true
+          })
+        } else if (n < 1) {
+          updateQuantity(data.variant.id, 1).then(setLoading(false))
+          setQuantity(1)
+        } else {
+          updateQuantity(data.variant.id, n).then(setLoading(false))
+        }
+      }, 2000)
+    )
   }
   // Get Static Variant Image
   const getStaticData = (() => {
@@ -71,9 +81,9 @@ function ListItem ({ data, staticVariants }) {
   return (
     <Flex justifyContent='space-between' alignItems='center'>
       <Flex alignItems='center'>
-        <Box display={['none', 'flex']}>
-          <Img fixed={getStaticData.image} alt={data.variant.title} />
-        </Box>
+        <AspectRatioBox display={['none', 'flex']} maxW='100px' ratio={1}>
+          <Img fixed={getStaticData.image} />
+        </AspectRatioBox>
         <Box>
           <Heading as='h4' fontSize='sm'>
             {data.title}
@@ -89,6 +99,7 @@ function ListItem ({ data, staticVariants }) {
         <FormLabel htmlFor='number' fontSize='xs'>
           Anzahl:
         </FormLabel>
+        {loading && <Spinner size='xs' />}
         <Flex alignItems='center'>
           <NumberInput
             size='sm'
@@ -124,7 +135,7 @@ export default function ProductList ({ products, staticVariants }) {
   return (
     <Box>
       <Heading as='h3' fontSize='xl' mb={4}>
-        Artikel
+        Übersicht
       </Heading>
       <Stack>
         {products.map((item, index) => (

@@ -50,7 +50,6 @@ export default function Header () {
         as={Link}
         to={item.path}
         variant='link'
-        fontWeight='normal'
         key={item.name}
         mr={4}
         size='sm'
@@ -69,7 +68,7 @@ export default function Header () {
       zIndex='100'
       bg='white'
       py={4}
-      mb={[4, 8]}
+      mb={[0, 4]}
       borderBottom='1px solid transparent'
       borderBottomColor={sticky && 'gray.100'}
       transition='border-color 200ms ease'

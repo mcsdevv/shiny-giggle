@@ -45,7 +45,7 @@ export default function ProductGrid ({ products }) {
           <Box key={item.id}>
             <Box as={Link} to={item.handle} mb='2' display='block'>
               <Img fluid={item.images[0].localFile.childImageSharp.fluid} />
-              <Heading size='md' mb='2'>
+              <Heading size='sm' mb='2' fontWeight='semibold'>
                 {item.title}
               </Heading>
               <Text fontSize='xs'>{desc}</Text>

@@ -44,9 +44,9 @@ export default function SelectProduct ({
     const goingToBeLimit = addedQuantity > 50
     if (isLimit || goingToBeLimit) {
       toast({
-        title: 'Sorry!',
+        title: 'Maximale Bestellmenge erreicht',
         description:
-          'Mehr als 50 Stück pro Artikel sind über unseren Online-Shop nicht möglich. Geschäftskunden können sich an info@acme.com wenden.',
+          'Die Bestellung von mehr als 50 Stück pro Artikel ist über unseren Onlineshop nicht möglich.',
         status: 'warning',
         duration: 5000,
         isClosable: true
@@ -79,15 +79,21 @@ export default function SelectProduct ({
       </FormControl>
       <Flex justifyContent='space-between' alignItems='center' mt='2'>
         <Box>
-          <Text as='span' fontSize='2xl' fontWeight='medium'>
+          <Text
+            as='span'
+            fontSize={['xl', null, null, '2xl']}
+            fontWeight='medium'
+          >
             {price}
           </Text>
-          <Text as='span' ml='2'>
+          <Text as='span' ml='1'>
             €
           </Text>
         </Box>
         <Button
           variantColor='teal'
+          variant='outline'
+          size={isSmall ? 'sm' : 'md'}
           isLoading={adding}
           onClick={handleAdd}
           isDisabled={!available}

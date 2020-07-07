@@ -66,12 +66,7 @@ function SEO ({ description, lang, meta, title }) {
             'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
         }
       ].concat(meta)}
-    >
-      <link
-        rel='stylesheet'
-        href='https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/inter.min.css'
-      />
-    </Helmet>
+    />
   )
 }
 

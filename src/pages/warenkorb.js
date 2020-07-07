@@ -3,7 +3,7 @@ import Seo from '../components/seo'
 import ProductList from '../components/productList'
 import CartSummary from '../components/cartSummary'
 
-import { useCartCount, useCartItems } from 'gatsby-theme-shopify-manager'
+import { useCartItems } from 'gatsby-theme-shopify-manager'
 import { graphql, Link } from 'gatsby'
 import {
   Heading,
@@ -20,8 +20,6 @@ import emptyCart from '../images/shopping_cart.svg'
 export default function Warenkorb ({ data }) {
   // Hooks
   const cartItems = useCartItems()
-  const cartCount = useCartCount()
-  const empty = cartCount === 0
   // Static Variant data for Images
   const {
     allShopifyProductVariant: { edges: variants }
@@ -45,17 +43,18 @@ export default function Warenkorb ({ data }) {
       <Image width={56} src={emptyCart} mx='auto' mt={12} />
     </Box>
   )
+  const ShowCart = () => {
+    if (cartItems.length === 0) {
+      return <CartEmpty />
+    } else return <CartOverview />
+  }
   return (
     <>
       <Seo title='Warenkorb' />
-      <Heading
-        fontWeight='black'
-        textAlign={empty ? 'center' : 'left'}
-        mb={[4, 8]}
-      >
+      <Heading fontWeight='black' mb={[4, 8]}>
         Warenkorb
       </Heading>
-      {!empty ? <CartOverview /> : <CartEmpty />}
+      <ShowCart />
     </>
   )
 }

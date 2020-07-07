@@ -25,7 +25,7 @@ export default function CartButton () {
         to='/warenkorb'
         display='flex'
         leftIcon={FiShoppingBag}
-        variant='outline'
+        variant={notEmpty ? 'solid' : 'ghost'}
         variantColor={buttonColor}
       >
         Warenkorb

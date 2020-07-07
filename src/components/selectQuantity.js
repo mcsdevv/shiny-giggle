@@ -1,5 +1,13 @@
 import React from 'react'
-import { IconButton, Flex, FormLabel, Box, Input } from '@chakra-ui/core'
+import {
+  IconButton,
+  Flex,
+  FormLabel,
+  Box,
+  Input,
+  FormControl,
+  FormHelperText
+} from '@chakra-ui/core'
 
 export default function SelectQuantity ({
   quantity,
@@ -29,40 +37,45 @@ export default function SelectQuantity ({
   }
   return (
     <Box>
-      {!hideLabel && (
-        <FormLabel fontSize='xs' display='block'>
-          Anzahl wählen:
-        </FormLabel>
-      )}
-      <Flex>
-        {/* Plus */}
-        <IconButton
-          size={isSmall && 'sm'}
-          type='dec'
-          icon='minus'
-          onClick={() => handleClick(false)}
-        />
-        {/* Show Quantity */}
-        <Input
-          size={isSmall && 'sm'}
-          type='number'
-          py={1}
-          px={2}
-          mx={2}
-          fontWeight='medium'
-          fontSize='lg'
-          w='10'
-          textAlign='center'
-          value={quantity}
-          onChange={handleInput}
-        />
-        {/* Minus */}
-        <IconButton
-          size={isSmall && 'sm'}
-          icon='add'
-          onClick={() => handleClick(true)}
-        />
-      </Flex>
+      <FormControl>
+        {!hideLabel && (
+          <FormLabel fontSize='xs' display='block'>
+            Anzahl wählen:
+          </FormLabel>
+        )}
+        <Flex>
+          {/* Plus */}
+          <IconButton
+            size={isSmall && 'sm'}
+            type='dec'
+            icon='minus'
+            onClick={() => handleClick(false)}
+          />
+          {/* Show Quantity */}
+          <Input
+            size={isSmall && 'sm'}
+            type='number'
+            py={1}
+            px={2}
+            mx={2}
+            fontWeight='medium'
+            fontSize='lg'
+            w='10'
+            textAlign='center'
+            value={quantity}
+            onChange={handleInput}
+            max={50}
+            min={1}
+          />
+          {/* Minus */}
+          <IconButton
+            size={isSmall && 'sm'}
+            icon='add'
+            onClick={() => handleClick(true)}
+          />
+        </Flex>
+        <FormHelperText fontSize='xs'>max. 50 Stück</FormHelperText>
+      </FormControl>
     </Box>
   )
 }
